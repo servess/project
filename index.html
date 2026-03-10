@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نظام إدارة الحضانة — هيئة التنمية | الخطة الشاملة</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage: #4a7c6f;
+  --sage-light: #6aab9c;
+  --sage-pale: #e8f5f2;
+  --cream: #faf8f3;
+  --warm: #f5efe4;
+  --gold: #c9a84c;
+  --gold-light: #e8cc7a;
+  --gold-pale: #fdf8ea;
+  --rose: #c9706a;
+  --rose-pale: #fdf0ef;
+  --sky: #4a7fa8;
+  --sky-pale: #eaf3f9;
+  --lavender: #7a6ab0;
+  --lavender-pale: #f0edfb;
+  --text-dark: #1e2c28;
+  --text-body: #3d5249;
+  --text-muted: #7a9088;
+  --border: #d4e4df;
+  --card-bg: #ffffff;
+  --shadow-sm: 0 2px 12px rgba(74,124,111,0.08);
+  --shadow-md: 0 6px 28px rgba(74,124,111,0.12);
+  --shadow-lg: 0 12px 48px rgba(74,124,111,0.16);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cairo', 'Noto Naskh Arabic', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+/* ── HEADER ── */
+.hero {
+  background: linear-gradient(150deg, #1e3d34 0%, #2d5a4a 40%, #3d7060 70%, #4a7c6f 100%);
+  padding: 64px 48px 52px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-pattern {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(201,168,76,0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(106,171,156,0.15) 0%, transparent 45%),
+                    radial-gradient(circle at 60% 80%, rgba(255,255,255,0.04) 0%, transparent 40%);
+}
+.hero-dots {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold-light); font-size: 12px; font-weight: 700;
+  padding: 6px 18px; border-radius: 50px; margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+.hero h1 {
+  font-size: 2.8rem; font-weight: 900; color: #fff;
+  margin-bottom: 12px; line-height: 1.3;
+}
+.hero h1 span { color: var(--gold-light); }
+.hero p { color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 680px; margin-bottom: 36px; }
+.hero-pills {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.hero-pill {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9); font-size: 13px; font-weight: 600;
+  padding: 8px 18px; border-radius: 50px;
+  display: flex; align-items: center; gap: 7px;
+}
+.hero-pill .dot { width: 7px; height: 7px; border-radius: 50%; }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px; margin-top: 40px;
+}
+.hstat {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px; padding: 18px 20px;
+  backdrop-filter: blur(10px);
+}
+.hstat-icon { font-size: 24px; margin-bottom: 6px; }
+.hstat-val { font-size: 1.8rem; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 4px; }
+.hstat-lbl { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+/* ── NAV ── */
+.sticky-nav {
+  background: var(--sage);
+  position: sticky; top: 0; z-index: 100;
+  display: flex; overflow-x: auto; scrollbar-width: none;
+  border-bottom: 3px solid var(--gold);
+  box-shadow: 0 4px 20px rgba(30,60,52,0.25);
+}
+.sticky-nav::-webkit-scrollbar { display: none; }
+.sticky-nav a {
+  color: rgba(255,255,255,0.65); text-decoration: none;
+  padding: 14px 20px; font-size: 13px; font-weight: 700;
+  white-space: nowrap; transition: all 0.2s;
+  border-bottom: 3px solid transparent; margin-bottom: -3px;
+  display: flex; align-items: center; gap: 6px;
+}
+.sticky-nav a:hover { color: #fff; border-bottom-color: var(--gold-light); background: rgba(255,255,255,0.05); }
+
+/* ── MAIN ── */
+.page { max-width: 1280px; margin: 0 auto; padding: 52px 28px 120px; }
+
+/* ── SECTION ── */
+.sec { margin-bottom: 72px; }
+.sec-head {
+  display: flex; align-items: flex-start; gap: 18px;
+  margin-bottom: 32px; padding-bottom: 18px;
+  border-bottom: 2px solid var(--border);
+}
+.sec-ico {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0; box-shadow: var(--shadow-sm);
+}
+.sec-head h2 { font-size: 1.5rem; font-weight: 900; color: var(--text-dark); margin-bottom: 4px; }
+.sec-head p { font-size: 13.5px; color: var(--text-muted); max-width: 700px; }
+
+/* ── CARDS ── */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 18px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+.card {
+  background: var(--card-bg); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  padding: 24px 26px;
+}
+.card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.card-head h3 { font-size: 15px; font-weight: 800; color: var(--text-dark); }
+.card-head .card-ico { font-size: 22px; }
+.card p, .card li { font-size: 13.5px; color: var(--text-body); }
+.card ul { list-style: none; padding: 0; }
+.card li { padding: 4px 0; border-bottom: 1px solid rgba(0,0,0,0.04); display: flex; align-items: flex-start; gap: 8px; }
+.card li:last-child { border: none; }
+.card li::before { content: '✦'; color: var(--sage); font-size: 8px; margin-top: 7px; flex-shrink: 0; }
+
+/* ── BADGES ── */
+.tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11.5px; font-weight: 700; padding: 3px 11px;
+  border-radius: 50px; margin: 2px;
+}
+.tg-sage { background: var(--sage-pale); color: var(--sage); }
+.tg-gold { background: var(--gold-pale); color: #8a6a0a; }
+.tg-rose { background: var(--rose-pale); color: #a04a44; }
+.tg-sky { background: var(--sky-pale); color: #2d5f8a; }
+.tg-lav { background: var(--lavender-pale); color: #5a4a90; }
+.tg-dark { background: var(--sage); color: #fff; }
+.tg-gray { background: #f0f2ee; color: var(--text-muted); }
+
+/* ── ALERTS ── */
+.alert {
+  border-radius: var(--radius-sm); padding: 14px 18px;
+  font-size: 13.5px; display: flex; gap: 12px; align-items: flex-start;
+  margin: 12px 0;
+}
+.al-sage { background: var(--sage-pale); border-right: 4px solid var(--sage); color: var(--text-body); }
+.al-gold { background: var(--gold-pale); border-right: 4px solid var(--gold); color: #6a4e0a; }
+.al-rose { background: var(--rose-pale); border-right: 4px solid var(--rose); color: #7a3030; }
+.al-sky { background: var(--sky-pale); border-right: 4px solid var(--sky); color: #1e4a6a; }
+.al-lav { background: var(--lavender-pale); border-right: 4px solid var(--lavender); color: #3a2a70; }
+.al-ico { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── TABLES ── */
+.tbl-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; background: var(--card-bg); }
+thead { background: var(--sage); }
+th { padding: 14px 16px; font-size: 12.5px; font-weight: 800; color: #fff; text-align: right; white-space: nowrap; }
+td { padding: 13px 16px; font-size: 13px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text-body); }
+tr:last-child td { border: none; }
+tr:hover td { background: var(--sage-pale); }
+thead tr:first-child th:first-child { border-radius: 0 var(--radius) 0 0; }
+thead tr:first-child th:last-child { border-radius: var(--radius) 0 0 0; }
+
+/* ── FLOW ── */
+.flow-box {
+  background: var(--card-bg); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  padding: 32px 28px; overflow-x: auto;
+}
+.flow-title { text-align: center; font-size: 15px; font-weight: 800; color: var(--sage); margin-bottom: 28px; }
+.flow-row { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: nowrap; margin: 10px 0; }
+.fn {
+  border-radius: 12px; padding: 12px 16px; font-size: 12px; font-weight: 700;
+  text-align: center; min-width: 108px; flex-shrink: 0; line-height: 1.4;
+}
+.fn-lbl { font-size: 10px; opacity: 0.8; margin-top: 3px; }
+.fn-sage { background: var(--sage); color: #fff; }
+.fn-gold { background: var(--gold); color: #fff; }
+.fn-rose { background: var(--rose); color: #fff; }
+.fn-sky { background: var(--sky); color: #fff; }
+.fn-lav { background: var(--lavender); color: #fff; }
+.fn-gray { background: #8a9e96; color: #fff; }
+.fn-warm { background: var(--warm); color: var(--text-dark); border: 1.5px solid var(--border); }
+.farr { color: #b0c8be; font-size: 20px; flex-shrink: 0; }
+.for { font-size: 11px; font-weight: 800; color: var(--text-muted); padding: 0 4px; }
+.fdiv { text-align: center; color: var(--text-muted); font-size: 13px; margin: 8px 0; }
+
+/* ── SYSTEM MAP ── */
+.sysmap { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 24px; align-items: center; }
+.sysmap-col h4 { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; text-align: center; }
+.sysbox { border-radius: 10px; padding: 10px 14px; font-size: 12px; font-weight: 700; margin-bottom: 8px; text-align: center; color: #fff; }
+.syscenter {
+  background: linear-gradient(145deg, #1e3d34, #2d5a4a);
+  border-radius: 20px; padding: 36px 24px; color: #fff;
+  text-align: center; font-weight: 900; font-size: 1rem;
+  box-shadow: var(--shadow-lg); border: 2px solid rgba(201,168,76,0.5);
+}
+.syscenter .ssub { font-size: 11.5px; opacity: 0.65; font-weight: 400; margin-top: 12px; line-height: 2; }
+
+/* ── PAGE ITEMS ── */
+.page-list { display: flex; flex-direction: column; gap: 12px; }
+.pitem {
+  display: flex; align-items: flex-start; gap: 18px;
+  background: var(--card-bg); border-radius: var(--radius-sm);
+  padding: 18px 22px; border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm); transition: box-shadow 0.2s;
+}
+.pitem:hover { box-shadow: var(--shadow-md); }
+.pnum {
+  background: var(--sage); color: #fff; width: 32px; height: 32px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0; margin-top: 2px;
+}
+.pitem h4 { font-size: 14.5px; font-weight: 800; margin-bottom: 6px; color: var(--text-dark); }
+.pitem p { font-size: 13px; color: var(--text-body); }
+.ptags { margin-top: 10px; }
+
+/* ── ROLE CARDS ── */
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.rcard { border-radius: var(--radius); padding: 24px; border: 2px solid; }
+.rcard h4 { font-size: 15px; font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.rcard ul { list-style: none; padding: 0; }
+.rcard li { font-size: 12.5px; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.rcard li:last-child { border: none; }
+.rc-admin { border-color: var(--gold); background: var(--gold-pale); }
+.rc-staff { border-color: var(--sage); background: var(--sage-pale); }
+.rc-teacher { border-color: var(--sky); background: var(--sky-pale); }
+.rc-parent { border-color: var(--rose); background: var(--rose-pale); }
+
+/* ── DB ── */
+.db-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.dbt { background: var(--card-bg); border-radius: var(--radius-sm); border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow-sm); }
+.dbt-h { padding: 10px 14px; font-size: 12.5px; font-weight: 800; color: #fff; }
+.dbt-b { padding: 10px 14px; }
+.dbf { font-size: 11.5px; color: var(--text-muted); padding: 3.5px 0; border-bottom: 1px solid #f0f4f2; }
+.dbf:last-child { border: none; }
+.pk { color: var(--gold); font-weight: 800; font-size: 10px; }
+.fk { color: var(--sky); font-weight: 800; font-size: 10px; }
+
+/* ── EVAL SYSTEM ── */
+.eval-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.eval-card { border-radius: var(--radius-sm); padding: 18px 20px; border: 1.5px solid; }
+.ev-phys { border-color: #e8a830; background: #fffdf0; }
+.ev-motor { border-color: #4a9e7e; background: #f0fbf6; }
+.ev-mental { border-color: #5a7ec8; background: #f0f4fb; }
+.ev-sense { border-color: #c86aa8; background: #fdf0f8; }
+.ev-social { border-color: #e07050; background: #fdf4f0; }
+.ev-lang { border-color: #40a8c8; background: #f0f8fc; }
+.ev-know { border-color: #7050c8; background: #f4f0fc; }
+.ev-imag { border-color: #c8a840; background: #fcf8f0; }
+.eval-card h4 { font-size: 13px; font-weight: 800; margin-bottom: 10px; }
+.eval-card ul { list-style: none; padding: 0; }
+.eval-card li { font-size: 12px; color: var(--text-body); padding: 3px 0; display: flex; align-items: center; gap: 6px; }
+.eval-card li::before { content: '—'; font-size: 10px; color: var(--text-muted); }
+
+/* ── SCORE SCALE ── */
+.scale { display: flex; gap: 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin: 16px 0; }
+.scale-seg { flex: 1; padding: 12px 10px; text-align: center; }
+.sc-red { background: #fde8e8; }
+.sc-orange { background: #fdeede; }
+.sc-yellow { background: #fdf8e8; }
+.sc-green { background: #e8f8f0; }
+.scale-seg .sv { font-size: 13px; font-weight: 800; margin-bottom: 2px; }
+.scale-seg .sl { font-size: 11px; color: var(--text-muted); }
+
+/* ── PHASES ── */
+.phases { display: flex; flex-direction: column; gap: 0; }
+.phase { display: flex; gap: 20px; }
+.phase-line { display: flex; flex-direction: column; align-items: center; }
+.phase-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--gold); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--gold); flex-shrink: 0; margin-top: 18px; }
+.phase-line-bar { flex: 1; width: 2px; background: var(--border); margin: 6px 0; }
+.phase-body { padding-bottom: 28px; flex: 1; }
+.phase-body h4 { font-size: 14px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.phase-body p { font-size: 13px; color: var(--text-body); }
+.ph-tag { font-size: 11.5px; font-weight: 700; padding: 3px 12px; border-radius: 50px; }
+
+/* ── IMPROVEMENTS ── */
+.impr { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.icard { background: var(--card-bg); border-radius: var(--radius-sm); padding: 20px; border: 1px solid var(--border); border-right: 4px solid; }
+.ip-must { border-right-color: var(--rose); }
+.ip-should { border-right-color: var(--gold); }
+.ip-nice { border-right-color: var(--sage); }
+.icard h4 { font-size: 14px; font-weight: 800; margin-bottom: 8px; }
+.icard p { font-size: 13px; color: var(--text-body); }
+
+/* ── PRICING TABLE ── */
+.pricing-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.price-box { background: var(--card-bg); border-radius: var(--radius-sm); border: 1.5px solid var(--border); padding: 20px; text-align: center; }
+.price-box.featured { border-color: var(--sage); background: var(--sage-pale); }
+.price-box h4 { font-size: 13px; font-weight: 800; margin-bottom: 10px; color: var(--sage); }
+.price-box .items { font-size: 12px; color: var(--text-body); text-align: right; }
+.price-box .items li { padding: 3px 0; list-style: none; display: flex; align-items: center; gap: 6px; }
+.price-box .items li::before { content: '+'; color: var(--sage); font-weight: 900; }
+
+/* ── NOTIF ── */
+.notif-list { display: flex; flex-direction: column; gap: 10px; }
+.notif-item { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 14px; align-items: center; background: var(--card-bg); border-radius: 10px; padding: 14px 18px; border: 1px solid var(--border); }
+.notif-item.head { background: var(--sage); border-radius: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+
+/* ── FINANCIAL ── */
+.fin-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+.fin-cell { background: var(--card-bg); padding: 20px; }
+.fin-cell h5 { font-size: 12px; font-weight: 800; color: var(--sage); margin-bottom: 10px; }
+.fin-cell p { font-size: 12.5px; color: var(--text-body); }
+
+/* ── DIVIDER ── */
+hr { border: none; border-top: 2px dashed var(--border); margin: 40px 0; }
+
+/* ── FOOTER ── */
+footer {
+  background: linear-gradient(135deg, #1e3d34, #2d5a4a);
+  color: rgba(255,255,255,0.5); text-align: center;
+  padding: 36px; font-size: 13px;
+}
+footer strong { color: var(--gold-light); }
+
+@media (max-width: 768px) {
+  .hero { padding: 36px 20px; }
+  .hero h1 { font-size: 1.9rem; }
+  .sysmap { grid-template-columns: 1fr; }
+  .page { padding: 32px 16px 80px; }
+  .fin-flow { grid-template-columns: 1fr; }
+  .notif-item { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ HERO ══════ -->
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">🌱 وثيقة التخطيط الشاملة v1.0</div>
+    <h1>نظام إدارة <span>الحضانة ومركز الضيافة</span></h1>
+    <p>منظومة رقمية متكاملة تُدير الفصول الدراسية، الترمات، الرسوم والباكجات، اشتراكات الأبناء، الحضور والدرجات، مع بوابات مستقلة للإدارة والمعلمات وأولياء الأمور — تابع لهيئة التنمية.</p>
+    <div class="hero-pills">
+      <div class="hero-pill"><div class="dot" style="background:#c9a84c"></div>روضة عام + دولي</div>
+      <div class="hero-pill"><div class="dot" style="background:#6aab9c"></div>نظام التقوية والتأسيس</div>
+      <div class="hero-pill"><div class="dot" style="background:#c9706a"></div>تقييم وزارة التعليم</div>
+      <div class="hero-pill"><div class="dot" style="background:#4a7fa8"></div>منصة الوزارة</div>
+      <div class="hero-pill"><div class="dot" style="background:#7a6ab0"></div>دورات ديناميكية</div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-icon">🏛️</div><div class="hstat-val">4</div><div class="hstat-lbl">أنواع مستخدمين</div></div>
+      <div class="hstat"><div class="hstat-icon">📚</div><div class="hstat-val">5</div><div class="hstat-lbl">أنظمة تعليمية</div></div>
+      <div class="hstat"><div class="hstat-icon">🖥️</div><div class="hstat-val">22+</div><div class="hstat-lbl">صفحة في الإدارة</div></div>
+      <div class="hstat"><div class="hstat-icon">📊</div><div class="hstat-val">8</div><div class="hstat-lbl">قدرات للتقييم</div></div>
+      <div class="hstat"><div class="hstat-icon">⚙️</div><div class="hstat-val">6</div><div class="hstat-lbl">مراحل تطوير</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ NAV ══════ -->
+<nav class="sticky-nav">
+  <a href="#s1">🗺️ نظرة عامة</a>
+  <a href="#s2">🎒 الكيانات</a>
+  <a href="#s3">🔄 رحلة التسجيل</a>
+  <a href="#s4">🖥️ لوحة الإدارة</a>
+  <a href="#s5">👩‍🏫 بوابة المعلمة</a>
+  <a href="#s6">👪 بوابة ولي الأمر</a>
+  <a href="#s7">📊 نظام التقييم</a>
+  <a href="#s8">📚 الأنظمة التعليمية</a>
+  <a href="#s9">💰 المالية والتقسيط</a>
+  <a href="#s10">🔔 الإشعارات</a>
+  <a href="#s11">🔐 الصلاحيات</a>
+  <a href="#s12">🗄️ قاعدة البيانات</a>
+  <a href="#s13">⚙️ التقنيات</a>
+  <a href="#s14">🗓️ خطة التطوير</a>
+  <a href="#s15">💡 التحسينات</a>
+</nav>
+
+<div class="page">
+
+<!-- ══════ ١ · نظرة عامة ══════ -->
+<section id="s1" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--sage-pale)">🗺️</div>
+    <div>
+      <h2>١ · نظرة عامة على المنظومة</h2>
+      <p>ثلاث بوابات مترابطة تخدم ثلاثة أطراف: الإدارة والمعلمات وأولياء الأمور، مع تكامل خارجي مع منصة وزارة التعليم وخدمات الإشعارات.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:22px;padding:32px">
+    <div class="card-head"><span class="card-ico">🗺️</span><h3>خريطة المنظومة الكاملة</h3></div>
+    <div class="sysmap">
+      <div class="sysmap-col">
+        <h4>المدخلات</h4>
+        <div class="sysbox" style="background:var(--gold)">👪 تسجيل أولياء الأمور</div>
+        <div class="sysbox" style="background:var(--sage)">📊 بيانات الطلاب</div>
+        <div class="sysbox" style="background:var(--sky)">💳 المدفوعات والأقساط</div>
+        <div class="sysbox" style="background:var(--rose)">📄 وثائق الالتحاق</div>
+        <div class="sysbox" style="background:var(--lavender)">🖐 بصمة الحضور</div>
+      </div>
+      <div class="sysmap-col" style="text-align:center">
+        <div class="syscenter">
+          🌱 نظام إدارة الحضانة
+          <div class="ssub">
+            إدارة الترمات والفصول<br>
+            الروضة العامة والدولية<br>
+            التقوية والتأسيس والدورات<br>
+            التقييم والقدرات (8 محاور)<br>
+            الرواتب والعمولات<br>
+            منصة الوزارة — Audit Log
+          </div>
+        </div>
+      </div>
+      <div class="sysmap-col">
+        <h4>المخرجات</h4>
+        <div class="sysbox" style="background:var(--sage)">📱 إشعارات WhatsApp</div>
+        <div class="sysbox" style="background:var(--sky)">📊 تقارير الوزارة</div>
+        <div class="sysbox" style="background:var(--gold)">👪 بوابة ولي الأمر</div>
+        <div class="sysbox" style="background:var(--rose)">🧾 إيصالات PDF</div>
+        <div class="sysbox" style="background:var(--lavender)">📢 إعلانات رسمية</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-head"><span class="card-ico">🎯</span><h3>هدف النظام</h3></div>
+      <p>إدارة رقمية كاملة لمركز ضيافة الأطفال التابع لهيئة التنمية — تشمل التعليم الأساسي، التقوية، التأسيس، الدورات، والتقييم الدوري وفق معايير وزارة التعليم السعودية.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-ico">👥</span><h3>المستخدمون</h3></div>
+      <p>
+        <span class="tag tg-gold">🔑 مدير النظام (Super Admin)</span>
+        <span class="tag tg-sage">💼 موظف / مشرف</span>
+        <span class="tag tg-sky">👩‍🏫 المعلمة</span>
+        <span class="tag tg-rose">👪 ولي الأمر</span>
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-ico">🔗</span><h3>التكاملات</h3></div>
+      <p>
+        <span class="tag tg-sky">📚 منصة وزارة التعليم</span>
+        <span class="tag tg-sage">📱 WhatsApp API</span>
+        <span class="tag tg-gold">📧 SMTP Email</span>
+        <span class="tag tg-gray">📊 Excel Export</span>
+        <span class="tag tg-rose">📄 PDF Generator</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ ٢ · الكيانات ══════ -->
+<section id="s2" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--gold-pale)">🎒</div>
+    <div>
+      <h2>٢ · الكيانات الأساسية (Core Entities)</h2>
+      <p>المكوّنات الجوهرية التي يدور حولها النظام وتربطها علاقات محددة.</p>
+    </div>
+  </div>
+  <div class="grid-3">
+    <div class="card" style="border-top:3px solid var(--sage)">
+      <div class="card-head"><span class="card-ico">🏫</span><h3 style="color:var(--sage)">الترم / الفصل الدراسي</h3></div>
+      <ul>
+        <li>اسم الترم + السنة الدراسية</li>
+        <li>تاريخ البداية/النهاية</li>
+        <li>فترة التسجيل (من-إلى)</li>
+        <li>الحد الأقصى للطلاب</li>
+        <li>النوع: روضة عام / دولي</li>
+        <li>الحالة: قادم/نشط/منتهٍ/مغلق</li>
+        <li>الباكجات المرتبطة به</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--gold)">
+      <div class="card-head"><span class="card-ico">🧒</span><h3 style="color:#8a6a0a">الطالب (الطفل)</h3></div>
+      <ul>
+        <li>الاسم الرباعي</li>
+        <li>السجل المدني (رقم + تاريخ بالهجري)</li>
+        <li>تاريخ الميلاد + حساب العمر الدقيق</li>
+        <li>منطقة السكن والحي</li>
+        <li>الهوايات / الأكل المفضل / التحسس</li>
+        <li>ما يحبه / ما يخافه</li>
+        <li>معلومات الوالدين + السجل المدني</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--rose)">
+      <div class="card-head"><span class="card-ico">👪</span><h3 style="color:#a04a44">ولي الأمر (Parent)</h3></div>
+      <ul>
+        <li>اسم الأب + الأم</li>
+        <li>السجل المدني لكلٍّ منهما</li>
+        <li>العمل (الأب والأم)</li>
+        <li>رقم الهاتف + البريد</li>
+        <li>طريقة التوصيل (ذاتي/باص)</li>
+        <li>اسم مستلم الطفل (أب/أم/جد/خال)</li>
+        <li>بوابة دخول مستقلة</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--sky)">
+      <div class="card-head"><span class="card-ico">📦</span><h3 style="color:#2d5f8a">الباكج (Package)</h3></div>
+      <ul>
+        <li>الرسوم الدراسية الأساسية (إلزامي)</li>
+        <li>الكتب (إلزامي)</li>
+        <li>الزي الرسمي (اختياري)</li>
+        <li>التوصيل / الباص (اختياري)</li>
+        <li>أنشطة إضافية (اختياري)</li>
+        <li>اختيار قطع منفردة (زي بدون كتب، إلخ)</li>
+        <li>سعر الترم الواحد / السنة كاملة</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--lavender)">
+      <div class="card-head"><span class="card-ico">👩‍🏫</span><h3 style="color:#5a4a90">المعلمة</h3></div>
+      <ul>
+        <li>البيانات الشخصية والتعليمية</li>
+        <li>نوع الراتب: أساسي / نسبة / مزيج</li>
+        <li>الراتب الثابت (للتعليم الأساسي)</li>
+        <li>نسبة العمولة (للتقوية والدورات)</li>
+        <li>الفصول المسؤولة عنها</li>
+        <li>سجل الحضور والانصراف</li>
+        <li>تقارير الأداء الشهرية</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #4a9e7e">
+      <div class="card-head"><span class="card-ico">📅</span><h3 style="color:#1e6050">الحضور والانصراف</h3></div>
+      <ul>
+        <li>الطالب + التاريخ + اليوم</li>
+        <li>وقت الحضور / الانصراف</li>
+        <li>الحالة: حاضر / غائب / متأخر / إذن</li>
+        <li>مستلم الطفل عند الانصراف</li>
+        <li>ملاحظات الحضور</li>
+        <li>حضور المعلمات أيضاً</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--gold)">
+      <div class="card-head"><span class="card-ico">🎯</span><h3 style="color:#8a6a0a">التقييم (8 قدرات)</h3></div>
+      <ul>
+        <li>جسدية / حركية / عقلية / حسية</li>
+        <li>اجتماعية-عاطفية / لغوية</li>
+        <li>معرفية / اهتمامات وخيال</li>
+        <li>5 مؤشرات لكل قدرة</li>
+        <li>تقييم شهري (أسبوعي/شهري/ترمي)</li>
+        <li>درجة من 25 لكل قدرة | 200 إجمالي</li>
+        <li>إرسال للوزارة + ولي الأمر</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--rose)">
+      <div class="card-head"><span class="card-ico">💰</span><h3 style="color:#a04a44">المدفوعات</h3></div>
+      <ul>
+        <li>طريقة الدفع: كاش / تحويل / أقساط</li>
+        <li>عدد الأقساط قابل للتخصيص</li>
+        <li>الدفعة الأولى والباقي</li>
+        <li>تتبع كل قسط: استحقاق / دفع</li>
+        <li>سجل كل المعاملات المالية</li>
+        <li>إيصال PDF تلقائي</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--lavender)">
+      <div class="card-head"><span class="card-ico">🎁</span><h3 style="color:#5a4a90">الخصومات والكوبونات</h3></div>
+      <ul>
+        <li>خصم الأخوة (إلزامي/اختياري)</li>
+        <li>خصم الأيتام</li>
+        <li>حالات خاصة (أب غير عامل / مسجون)</li>
+        <li>رفع وثائق الحالة + مراجعة الإدارة</li>
+        <li>كوبونات بنسبة / بمبلغ ثابت</li>
+        <li>حد صلاحية الكوبون ومرات الاستخدام</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ٣ · رحلة التسجيل ══════ -->
+<section id="s3" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--rose-pale)">🔄</div>
+    <div>
+      <h2>٣ · رحلة التسجيل الكاملة</h2>
+      <p>من اختيار نوع الروضة وحتى اعتماد الاشتراك وبدء التعليم.</p>
+    </div>
+  </div>
+
+  <div class="flow-box" style="margin-bottom:22px">
+    <div class="flow-title">مرحلة ١ — اختيار نوع الروضة والباكجات</div>
+    <div class="flow-row">
+      <div class="fn fn-warm">① ولي الأمر يدخل<div class="fn-lbl">البوابة الإلكترونية</div></div>
+      <div class="farr">←</div>
+      <div class="fn fn-gold">② اختيار النوع<div class="fn-lbl">روضة عام / دولي</div></div>
+      <div class="farr">←</div>
+      <div class="fn fn-sage">③ عرض الأسعار<div class="fn-lbl">بناء على الاختيار</div></div>
+      <div class="farr">←</div>
+      <div class="fn fn-sky">④ اختيار المدة<div class="fn-lbl">ترم ١ / ترم ٢ / سنة</div></div>
+    </div>
+    <div class="fdiv">▼ صفحة اختيار الباكجات</div>
+    <div class="flow-row">
+      <div class="fn fn-sage">⑤ رسوم دراسية<div class="fn-lbl">إلزامي</div></div>
+      <div class="farr">+</div>
+      <div class="fn fn-sage">⑥ كتب دراسية<div class="fn-lbl">إلزامي</div></div>
+      <div class="farr">+</div>
+      <div class="fn fn-gold">⑦ زي رسمي<div class="fn-lbl">اختياري</div></div>
+      <div class="farr">+</div>
+      <div class="fn fn-gold">⑧ توصيل/باص<div class="fn-lbl">اختياري</div></div>
+      <div class="farr">+</div>
+      <div class="fn fn-gold">⑨ أنشطة إضافية<div class="fn-lbl">اختياري</div></div>
+    </div>
+  </div>
+
+  <div class="flow-box" style="margin-bottom:22px">
+    <div class="flow-title">مرحلة ٢ — الدفع والاشتراك</div>
+    <div class="flow-row">
+      <div class="fn fn-sky">⑩ كوبون/خصم؟<div class="fn-lbl">اختياري</div></div>
+      <div class="farr">←</div>
+      <div class="fn fn-sage">⑪ اختيار الدفع<div class="fn-lbl">كاش/تحويل/أقساط</div></div>
+      <div class="farr">←</div>
+      <div class="fn fn-gold">⑫ إرسال الطلب<div class="fn-lbl">قيد المراجعة</div></div>
+    </div>
+    <div class="fdiv">▼ الإدارة تراجع في لوحة التحكم</div>
+    <div class="flow-row">
+      <div class="fn fn-rose">⑬أ رفض + سبب<div class="fn-lbl">إشعار لولي الأمر</div></div>
+      <div class="for">أو</div>
+      <div class="fn fn-sage">⑬ب قبول<div class="fn-lbl">إنشاء خطة التقسيط</div></div>
+      <div class="farr">←</div>
+      <div class="fn fn-gold">⑭ إشعار تلقائي<div class="fn-lbl">WhatsApp + Email</div></div>
+      <div class="farr">←</div>
+      <div class="fn fn-sage">⑮ بدء الدراسة<div class="fn-lbl">تعيين المعلمة + الفصل</div></div>
+    </div>
+  </div>
+
+  <div class="alert al-gold">
+    <div class="al-ico">🏷️</div>
+    <div><strong>نظام المرونة في الاختيار:</strong> يمكن شراء الزي بدون كتب أو الكتب بدون زي أو التوصيل فقط — كل عنصر مستقل. النظام يحسب الإجمالي تلقائياً بناءً على الاختيارات. لا يوجد إلزام على الاختيارات الثانوية.</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ٤ · لوحة الإدارة ══════ -->
+<section id="s4" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--sage-pale)">🖥️</div>
+    <div>
+      <h2>٤ · لوحة الإدارة — الصفحات التفصيلية</h2>
+      <p>22+ صفحة رئيسية — كل صفحة موضّحة وظيفتها ومحتواها وصلاحيتها.</p>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>الصفحة</th>
+          <th>الوظيفة</th>
+          <th>المحتوى التفصيلي</th>
+          <th>الصلاحية</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td><strong>لوحة المعلومات الرئيسية</strong><br><span class="tag tg-sage">Dashboard</span></td>
+          <td>نظرة فورية شاملة</td>
+          <td>عدد الطلاب/المعلمات/الاشتراكات | إيرادات اليوم/الشهر | طلبات الاشتراك الجديدة | الغيابات اليوم | تنبيهات: أقساط متأخرة/تقييمات | إجراءات سريعة</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف</span></td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td><strong>إدارة الترمات والفصول</strong></td>
+          <td>إنشاء وإدارة الترمات</td>
+          <td>إنشاء ترم جديد (اسم/تاريخ/نوع/حد طلاب) | فتح/إغلاق التسجيل | ربط الباكجات بالترم | تحديد إلزامي/اختياري لكل باكج | قائمة الترمات مع الحالة</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td><strong>إدارة الباكجات والرسوم</strong></td>
+          <td>تعريف أسعار الخدمات</td>
+          <td>إنشاء باكجات (رسوم/كتب/زي/توصيل/أنشطة) | سعر الترم الواحد + سنة كاملة | ربط بالترمات | إدارة سعر الروضة العامة والدولية بشكل منفصل</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td><strong>طلبات الاشتراك</strong></td>
+          <td>مراجعة واعتماد الطلبات</td>
+          <td>قائمة الطلبات مع الحالة | عرض تفاصيل: طالب/ولي/ترم/باكجات/إجمالي | أزرار: موافقة/رفض+سبب | عند الموافقة: إنشاء خطة تقسيط + إشعار | فلتر بالحالة/الترم/التاريخ</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف</span></td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td><strong>إدارة الطلاب</strong></td>
+          <td>قائمة الطلاب الكاملة</td>
+          <td>بيانات الطالب كاملة | الصور والوثائق | الترم المسجل + الباكجات | سجل الحضور | الدرجات والتقييمات | الوضع المالي | معلومات ولي الأمر | فلاتر متعددة + تصدير Excel</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف</span></td>
+        </tr>
+        <tr>
+          <td><strong>6</strong></td>
+          <td><strong>إدارة المعلمات</strong></td>
+          <td>شؤون المعلمات والرواتب</td>
+          <td>بيانات المعلمة | نوع الراتب (ثابت/نسبة/مزيج) | الفصول المسؤولة | العمولات المتراكمة | سجل الحضور والغياب | تقارير الأداء | الرواتب الشهرية</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>7</strong></td>
+          <td><strong>الحضور والانصراف</strong></td>
+          <td>إدارة سجل الحضور</td>
+          <td>تسجيل يدوي أو باس كود | عرض يومي/أسبوعي/شهري | فلتر بالطالب/الفصل/التاريخ | تقرير الغياب | تسجيل مستلم الطفل | تصدير PDF</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف</span></td>
+        </tr>
+        <tr>
+          <td><strong>8</strong></td>
+          <td><strong>إدارة التقييمات</strong></td>
+          <td>تقييم القدرات الثمانية</td>
+          <td>عرض/إدخال تقييمات بالمحاور الثمانية | حساب الدرجات تلقائياً | عرض أسبوعي/شهري/ترمي | مقارنة التقدم | إرسال للوزارة | إرسال لولي الأمر | تقرير PDF</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف</span></td>
+        </tr>
+        <tr>
+          <td><strong>9</strong></td>
+          <td><strong>إدارة دروس التقوية</strong></td>
+          <td>نظام التقوية الدراسية</td>
+          <td>إنشاء درس تقوية (مادة/مدة/أيام/سعر) | تحديد طبيعة الدرس: فردي/جماعي | تعيين معلمة + نسبة عمولتها | تسعير المركز والوسيط والمعلمة | فتح/إغلاق التسجيل</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>10</strong></td>
+          <td><strong>إدارة نظام التأسيس</strong></td>
+          <td>نظام التأسيس من الصفر</td>
+          <td>إنشاء باقات تأسيس بحسب المستوى | التقييم الأولي للطفل عند التسجيل | تعيين الباقة المناسبة بعد التقييم | تحديد الأيام (يوم/يومين) + المدة | تسعير كل مادة منفردة</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>11</strong></td>
+          <td><strong>إدارة الدورات</strong></td>
+          <td>دورات تدريبية ديناميكية</td>
+          <td>إنشاء دورة (اسم/وصف/سعة/سعر/مدة) | تحديد أيام الأسبوع بالتاريخ والساعة لكل يوم | الإلغاء/التفعيل | عدد المشاركين المسموح | تأكيد الحجوزات</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>12</strong></td>
+          <td><strong>الإدارة المالية</strong></td>
+          <td>الحسابات والتقارير المالية</td>
+          <td>إجمالي الإيرادات | المديونيات المتأخرة | تقسيط كل اشتراك | تسجيل دفعة جديدة | المصروفات | صافي الأرباح | رواتب المعلمات | تصدير Excel/PDF</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>13</strong></td>
+          <td><strong>نظام الخصومات والكوبونات</strong></td>
+          <td>إدارة الحوافز والتخفيضات</td>
+          <td>إنشاء كوبون (كود/نسبة/مبلغ/صلاحية) | خصومات الأخوة والأيتام | الحالات الخاصة (رفع وثائق + مراجعة) | سجل الاستخدام | تفعيل/إيقاف</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>14</strong></td>
+          <td><strong>إدارة المواد الدراسية</strong></td>
+          <td>تعريف المواد والحقيبة</td>
+          <td>تعريف المواد (اسم/مرحلة/نوع) | ربط بالحقيبة الدراسية | الحقيبة غير قابلة للتعديل من ولي الأمر | مكونات الحقيبة تُعرض فقط | سعر كل مادة في التقوية</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>15</strong></td>
+          <td><strong>إدارة منصة الوزارة</strong></td>
+          <td>رفع المحتوى والواجبات</td>
+          <td>رفع مواد الدراسة على المنصة | رفع الفيديوهات التعليمية | إدارة الواجبات اليومية | التحقق من رؤية ولي الأمر | إرسال للأم مباشرة إن لم تفتح المنصة | الاختبارات المركزية (ترم 1 + ترم 2)</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف</span></td>
+        </tr>
+        <tr>
+          <td><strong>16</strong></td>
+          <td><strong>إدارة الاختبارات</strong></td>
+          <td>نظام اختبارات منظم</td>
+          <td>إنشاء اختبار (أسبوعي/شهري/ترمي) | نوع الاختبار: شفهي/نظري/عملي/تسميع | اختبارات أونلاين + ورقية + تسميع | جدول الاختبارات | حفظ النتائج | منع الغش</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف</span></td>
+        </tr>
+        <tr>
+          <td><strong>17</strong></td>
+          <td><strong>صفحة الإعلانات الرسمية</strong></td>
+          <td>إنشاء إعلانات رسمية</td>
+          <td>نموذج إعلان ثابت برسمي | إضافة الشعار + شعار التنمية تلقائياً | نص الإعلان من الإدارة | تصدير PDF جاهز للطباعة | حفظ في قاعدة البيانات | إرسال للأولياء</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>18</strong></td>
+          <td><strong>إدارة الموظفين والصلاحيات</strong></td>
+          <td>فريق العمل والأذونات</td>
+          <td>إضافة/تعديل/حذف موظف | صلاحيات لكل صفحة وإجراء | تعطيل/تفعيل الحساب | سجل الدخول | كلمة مرور أولية + تغيير إجباري</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>19</strong></td>
+          <td><strong>التقارير والإحصاءات</strong></td>
+          <td>تقارير شاملة قابلة للتصدير</td>
+          <td>تقرير حضور شهري | تقرير مالي | تقرير الدرجات والتقييمات | تقرير الوزارة (جاهز للرفع) | تقرير أداء المعلمات | تصدير Excel/PDF</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف (محدود)</span></td>
+        </tr>
+        <tr>
+          <td><strong>20</strong></td>
+          <td><strong>الإشعارات وقوالب الرسائل</strong></td>
+          <td>ضبط منظومة الإشعارات</td>
+          <td>قوالب رسائل قابلة للتعديل | اختيار القناة لكل نوع إشعار | جدولة الإشعارات | سجل الإشعارات المرسلة</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>21</strong></td>
+          <td><strong>إدارة أنشطة المعلمات</strong></td>
+          <td>الأنشطة والدفاع المدني</td>
+          <td>تسجيل أنشطة المعلمات | تدريب الدفاع المدني + تاريخه | شهادات المعلمات | تقارير الأنشطة</td>
+          <td><span class="tag tg-gold">مدير</span><span class="tag tg-sage">موظف</span></td>
+        </tr>
+        <tr>
+          <td><strong>22</strong></td>
+          <td><strong>سجل المراجعة (Audit Log)</strong></td>
+          <td>تتبع كل الإجراءات</td>
+          <td>كل تغيير مسجَّل تلقائياً لا يُحذف | من أجرى | متى | ما كان | ما أصبح | فلتر بالمستخدم/الإجراء/التاريخ | تصدير</td>
+          <td><span class="tag tg-gold">مدير فقط</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ٥ · بوابة المعلمة ══════ -->
+<section id="s5" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--sky-pale)">👩‍🏫</div>
+    <div>
+      <h2>٥ · بوابة المعلمة</h2>
+      <p>بوابة مستقلة للمعلمة تُمكّنها من إدارة فصلها ودروسها وإدخال الدرجات والتقييمات بسهولة.</p>
+    </div>
+  </div>
+
+  <div class="page-list">
+    <div class="pitem">
+      <div class="pnum">1</div>
+      <div>
+        <h4>🏠 لوحة المعلمة الرئيسية</h4>
+        <p>ملخص فوري: الفصول المسؤولة عنها | دروس التقوية اليوم | طلاب حاضرون/غائبون | العمولات المتراكمة هذا الشهر | إشعارات عاجلة | ارتباط بمهام اليوم.</p>
+        <div class="ptags"><span class="tag tg-sky">تعليم أساسي</span><span class="tag tg-sage">تقوية</span><span class="tag tg-gold">دورات</span></div>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">2</div>
+      <div>
+        <h4>📅 تسجيل الحضور والانصراف</h4>
+        <p>تسجيل حضور طلاب الفصل يومياً | حالات: حاضر / غائب / متأخر / إذن | وقت الحضور والانصراف | تسجيل اسم مستلم الطفل عند الانصراف | ملاحظات | حفظ + إشعار تلقائي لولي الأمر.</p>
+        <div class="ptags"><span class="tag tg-rose">يؤثر على إشعارات الأهل</span></div>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">3</div>
+      <div>
+        <h4>📊 إدخال الدرجات</h4>
+        <p>اختيار المادة | إدخال درجات لكل طالب: واجب + إملاء + حضور + سلوك | احتساب الإجمالي تلقائياً | ملاحظات اختيارية | حفظ + إشعار لولي الأمر | تاريخ آخر تحديث مسجَّل.</p>
+        <div class="ptags"><span class="tag tg-sky">يصل لولي الأمر فوراً</span></div>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">4</div>
+      <div>
+        <h4>🎯 إدخال تقييمات القدرات (8 محاور)</h4>
+        <p>إدخال تقييم لكل طالب على المحاور الثمانية | 5 مؤشرات لكل محور | درجة 1-5 لكل مؤشر | الحساب التلقائي للدرجة الإجمالية | مقارنة مع الشهر السابق | إرسال للإدارة للمراجعة ثم للوزارة.</p>
+        <div class="ptags"><span class="tag tg-gold">يُرسَل للوزارة</span><span class="tag tg-rose">شهري</span></div>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">5</div>
+      <div>
+        <h4>📤 رفع المحتوى التعليمي</h4>
+        <p>رفع مواد اليوم على منصة الوزارة | رفع فيديو تعليمي (مصوَّر في المركز) | رفع الواجبات اليومية | إشعار الأم بتاريخ/وقت الرفع | إرسال مباشر للأم (واتساب/تلغرام) إن لم تفتح المنصة.</p>
+        <div class="ptags"><span class="tag tg-sky">منصة الوزارة</span></div>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">6</div>
+      <div>
+        <h4>💰 ملخص الراتب والعمولات</h4>
+        <p>الراتب الأساسي الشهري | عمولات دروس التقوية (حسب عدد الطلاب ونسبتها) | عمولات الدورات | الإجمالي المتوقع هذا الشهر | سجل الشهور السابقة | تأكيد الاستلام.</p>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">7</div>
+      <div>
+        <h4>👥 قائمة الطلاب</h4>
+        <p>طلاب كل فصل أو درس | البيانات الأساسية | ملاحظات خاصة بكل طالب | الدرجات التراكمية | نسبة حضور كل طالب | تواصل مع ولي الأمر من النظام.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ٦ · بوابة ولي الأمر ══════ -->
+<section id="s6" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--rose-pale)">👪</div>
+    <div>
+      <h2>٦ · بوابة ولي الأمر</h2>
+      <p>بوابة مستقلة تُتيح لولي الأمر متابعة ابنه كاملاً من الحضور والدرجات إلى المالية والمحتوى التعليمي.</p>
+    </div>
+  </div>
+
+  <div class="page-list">
+    <div class="pitem">
+      <div class="pnum" style="background:var(--rose)">0</div>
+      <div>
+        <h4>🌐 التسجيل الأولي (قبل القبول)</h4>
+        <p>تسجيل بيانات الطفل والوالدين كاملة | اختيار نوع الروضة (عام/دولي) | اختيار المدة (ترم/سنة) | اختيار الباكجات | إدخال كوبون إن وُجد | تقديم الطلب للمراجعة | الانتظار حتى التأكيد.</p>
+        <div class="ptags"><span class="tag tg-gray">قبل إنشاء الحساب</span></div>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">1</div>
+      <div>
+        <h4>🏠 لوحة ولي الأمر الرئيسية</h4>
+        <p>ملخص أبنائه المسجلين | آخر إشعارات | القسط القادم وموعده | حضور اليوم | آخر درجة رُفعت | محتوى تعليمي جديد | روابط سريعة.</p>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">2</div>
+      <div>
+        <h4>📅 سجل الحضور والانصراف</h4>
+        <p>جدول شهري ملوَّن بالحالات | وقت الحضور والانصراف يومياً | اسم مستلم الطفل | نسبة الحضور الإجمالية | عرض حسب الشهر أو الترم.</p>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">3</div>
+      <div>
+        <h4>📊 الدرجات والتقييمات</h4>
+        <p>درجات كل مادة تفصيلاً | المعدل العام | تقييمات القدرات الثمانية بتصنيفها | رسم بياني للتقدم أسبوعياً وشهرياً | مقارنة التقدم مع الترم السابق | ملاحظات المعلمة.</p>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">4</div>
+      <div>
+        <h4>💰 الحالة المالية</h4>
+        <p>الإجمالي المستحق والمدفوع والمتبقي | جدول الأقساط مع تاريخ كل قسط | زر "دفع الآن" (تحويل أو كاش) | إيصالات PDF لكل دفعة | طلب تقسيط إضافي.</p>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">5</div>
+      <div>
+        <h4>📚 المحتوى التعليمي (منصة الوزارة)</h4>
+        <p>عرض كل المواد المرفوعة بالتاريخ | فيديوهات المذاكرة | الواجبات اليومية | حالة الواجب: تم/لم يتم | الاختبارات المركزية: ترم 1 وترم 2 | اختيار: مع المنصة أو بدونها.</p>
+        <div class="ptags"><span class="tag tg-sky">اختياري عند الاشتراك</span></div>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">6</div>
+      <div>
+        <h4>🎯 الاشتراك في التقوية والدورات</h4>
+        <p>عرض الدروس والدورات المتاحة | اختيار المادة ونوع الدرس (فردي/جماعي) | السعر واضح | إرسال طلب الاشتراك | متابعة الطلب | ولي الأمر هو الذي يختار التقوية (لا الطالب).</p>
+        <div class="ptags"><span class="tag tg-rose">يتحكم فيه ولي الأمر</span></div>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">7</div>
+      <div>
+        <h4>🔔 الإشعارات</h4>
+        <p>كل الإشعارات مرتبة بالتاريخ: غياب/درجة/قسط/محتوى/تأكيد اشتراك | تمييز المقروء وغير المقروء | رد على بعض الإشعارات.</p>
+      </div>
+    </div>
+    <div class="pitem">
+      <div class="pnum">8</div>
+      <div>
+        <h4>📄 تفاصيل العقد والاشتراك</h4>
+        <p>نوع الروضة المسجل | الترم ومدته | الباكجات المختارة | الخصومات المطبقة | حالة الاشتراك | بداية ونهاية الترم | للعرض فقط.</p>
+        <div class="ptags"><span class="tag tg-gray">عرض فقط</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ٧ · نظام التقييم ══════ -->
+<section id="s7" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--gold-pale)">📊</div>
+    <div>
+      <h2>٧ · نظام التقييم (معيار الوزارة)</h2>
+      <p>تقييم 8 قدرات للطفل شهرياً وفق مقياس هيئة التنمية — مخصص للأطفال من 5.5 إلى 6.5 سنوات.</p>
+    </div>
+  </div>
+
+  <div class="alert al-gold" style="margin-bottom:22px">
+    <div class="al-ico">📋</div>
+    <div><strong>المقياس:</strong> 8 قدرات × 5 مؤشرات = 40 مؤشر إجمالي | كل مؤشر يُقيَّم من 1 إلى 5 | الدرجة القصوى لكل قدرة 25 | الإجمالي 200 | يُطبَّق شهرياً لكل طفل في عمر 6 سنوات ± 6 أشهر</div>
+  </div>
+
+  <div class="eval-grid" style="margin-bottom:22px">
+    <div class="eval-card ev-phys">
+      <h4>🏃 القدرات الجسدية</h4>
+      <ul>
+        <li>الطول بين 100–120 سم</li>
+        <li>الوزن بين 20–25 كجم</li>
+        <li>ظهور اللوزتان بوضوح</li>
+        <li>محيط الرأس 50–54 سم</li>
+        <li>بدأ تبديل الأسنان اللبنية</li>
+      </ul>
+    </div>
+    <div class="eval-card ev-motor">
+      <h4>🤸 القدرات الحركية</h4>
+      <ul>
+        <li>التحكم بالجسد أثناء القفز/الركض</li>
+        <li>ارتداء الملابس وخلعها وحده</li>
+        <li>استخدام الشوكة والملعقة والسكين</li>
+        <li>العناية بنفسه في الحمام</li>
+        <li>استخدام القلم بشكل صحيح</li>
+      </ul>
+    </div>
+    <div class="eval-card ev-mental">
+      <h4>🧠 القدرات العقلية</h4>
+      <ul>
+        <li>التفكير المنطقي والحساب</li>
+        <li>تقليد الحروف والأرقام</li>
+        <li>العمليات الحسابية الأساسية</li>
+        <li>التمييز بين الحقيقة والخيال</li>
+        <li>التركيز 12–16 دقيقة</li>
+      </ul>
+    </div>
+    <div class="eval-card ev-sense">
+      <h4>👁️ القدرات الحسية</h4>
+      <ul>
+        <li>الفروق البصرية الدقيقة</li>
+        <li>التفاعل مع تمييز الروائح</li>
+        <li>تجربة أطعمة جديدة بقوام مختلف</li>
+        <li>الأنشطة باللمس (رمل/طين/ماء)</li>
+      </ul>
+    </div>
+    <div class="eval-card ev-social">
+      <h4>❤️ الاجتماعية والعاطفية</h4>
+      <ul>
+        <li>المشاركة في الأنشطة الجماعية</li>
+        <li>الأصدقاء المفضلين (درجة لكل صديق)</li>
+        <li>تراجع المخاوف من الغرباء</li>
+        <li>الانتظار في الدور بدون تذمر</li>
+        <li>التعبير عن مشاعره بطلاقة</li>
+      </ul>
+    </div>
+    <div class="eval-card ev-lang">
+      <h4>💬 القدرات اللغوية</h4>
+      <ul>
+        <li>الجمل المركبة (6 كلمات+)</li>
+        <li>قواعد اللغة والأزمنة والضمائر</li>
+        <li>وصف المشاهدات والتعبير عن الأفكار</li>
+        <li>التمييز بين الحروف الهجائية</li>
+        <li>الإجابة عن أسئلة القصص</li>
+      </ul>
+    </div>
+    <div class="eval-card ev-know">
+      <h4>🔬 القدرات المعرفية</h4>
+      <ul>
+        <li>الاستعداد للقراءة</li>
+        <li>إدراك معنى المستقبل</li>
+        <li>عد 10+ أشياء (درجة لكل رقم فوق 9)</li>
+        <li>تسمية 4+ ألوان (درجة لكل لون فوق 3)</li>
+        <li>معرفة أشياء المنزل اليومية</li>
+      </ul>
+    </div>
+    <div class="eval-card ev-imag">
+      <h4>🎨 الاهتمامات والخيال</h4>
+      <ul>
+        <li>اللعب التمثيلي للأدوار</li>
+        <li>الحديث عن مغامرات خيالية مستقبلية</li>
+        <li>إنشاء قصص خيالية قصيرة متكاملة</li>
+        <li>الخيال مرتبط بالبيئة المباشرة</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-head"><span class="card-ico">🎯</span><h3>مقياس التصنيف — لكل قدرة (من 25)</h3></div>
+    <div class="scale">
+      <div class="scale-seg sc-red"><div class="sv" style="color:#c0392b">5–9</div><div class="sl">يحتاج مزيداً من الدعم</div></div>
+      <div class="scale-seg sc-orange"><div class="sv" style="color:#e67e22">10–14</div><div class="sl">يحتاج بعض الدعم</div></div>
+      <div class="scale-seg sc-yellow"><div class="sv" style="color:#d4ac0d">15–19</div><div class="sl">يمتلك القدرة طبيعياً</div></div>
+      <div class="scale-seg sc-green"><div class="sv" style="color:#27ae60">20–25</div><div class="sl">متفوق في القدرة</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="card-ico">📊</span><h3>مقياس التصنيف الكلي — إجمالي المقياس (من 200)</h3></div>
+    <div class="scale">
+      <div class="scale-seg sc-red"><div class="sv" style="color:#c0392b">40–79</div><div class="sl">يحتاج مزيداً من الدعم</div></div>
+      <div class="scale-seg sc-orange"><div class="sv" style="color:#e67e22">80–119</div><div class="sl">يحتاج بعض الدعم</div></div>
+      <div class="scale-seg sc-yellow"><div class="sv" style="color:#d4ac0d">120–159</div><div class="sl">يمتلك القدرات بشكل طبيعي</div></div>
+      <div class="scale-seg sc-green"><div class="sv" style="color:#27ae60">160–200</div><div class="sl">متفوق في قدراته ككل</div></div>
+    </div>
+    <div class="alert al-sage" style="margin-top:14px">
+      <div class="al-ico">🧮</div>
+      <div><strong>طريقة الحساب:</strong> مجموع (عدد المؤشرات التي حصل على 1 × 1) + (على 2 × 2) + (على 3 × 3) + (على 4 × 4) + (على 5 × 5) = الدرجة الإجمالية. النظام يحسب ذلك تلقائياً.</div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ٨ · الأنظمة التعليمية ══════ -->
+<section id="s8" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--lavender-pale)">📚</div>
+    <div>
+      <h2>٨ · الأنظمة التعليمية الخمسة</h2>
+      <p>خمسة أنظمة مترابطة تُغطي جميع احتياجات التعليم في الحضانة ومركز الضيافة.</p>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:18px">
+    <div class="card" style="border-right:4px solid var(--sage)">
+      <div class="card-head"><span class="card-ico">🏫</span><h3>١ · الروضة (التعليم الأساسي)</h3></div>
+      <ul>
+        <li>نوعان: روضة عامة (المنهج السعودي) / روضة دولية (باللغة الإنجليزية)</li>
+        <li>المدة: ترم واحد أو ترمان أو سنة كاملة</li>
+        <li>الحقيبة الدراسية: مواد إلزامية يحددها المركز</li>
+        <li>ولي الأمر يرى محتوى الحقيبة للعلم فقط — لا للتعديل</li>
+        <li>معلمة راتب ثابت (تعليم صباحي)</li>
+        <li>الاختبارات: مركزية من الوزارة (ترم1 + ترم2)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-right:4px solid var(--sky)">
+      <div class="card-head"><span class="card-ico">📖</span><h3>٢ · نظام الحقيبة / المذاكرة</h3></div>
+      <ul>
+        <li>مذاكرة يومية منظمة: مراجعة + سماع + درس جديد</li>
+        <li>5 أيام/أسبوع أو أقل حسب اختيار الأم (2 أو 3 أيام)</li>
+        <li>مواد أساسية: رياضيات، إنجليزي، قرآن وغيرها</li>
+        <li>يشمل: مطويات + اختبار مركزي + دخول المنصة</li>
+        <li>ولي الأمر يختار: مع المنصة (المركز يرفع) أو بدونها</li>
+        <li>فردي (معلمة خاصة) أو جماعي (فصل) — سعر مختلف</li>
+        <li>المطويات: يختار عددها حسب المواد والشهر</li>
+      </ul>
+    </div>
+    <div class="card" style="border-right:4px solid var(--gold)">
+      <div class="card-head"><span class="card-ico">🎯</span><h3>٣ · دروس التقوية</h3></div>
+      <ul>
+        <li>تقوية لمواد محددة يختارها ولي الأمر</li>
+        <li>سعر كل مادة مستقل في لوحة التحكم</li>
+        <li>تقسيم السعر: جزء للمركز + جزء للوسيط + الباقي للمعلمة</li>
+        <li>السعر الإجمالي هو ما يظهر للعميل فقط</li>
+        <li>فردي أو جماعي (سعر مختلف)</li>
+        <li>يظهر الطفل عند المعلمة المعيَّنة له</li>
+      </ul>
+    </div>
+    <div class="card" style="border-right:4px solid var(--rose)">
+      <div class="card-head"><span class="card-ico">🔤</span><h3>٤ · نظام التأسيس</h3></div>
+      <ul>
+        <li>للأطفال من الصفر (تأسيس كامل)</li>
+        <li>يوم أو يومان فقط في الأسبوع</li>
+        <li>المدة: أسبوع / شهر / ترم</li>
+        <li>كل مادة لها سعرها المستقل</li>
+        <li>الطفل يأتي أولاً للتقييم الأولي — الباقة تُحدد بعده</li>
+        <li>باقات بمستويات: مبتدئ/متوسط/متقدم</li>
+        <li>الباقة تُعتمد من الإدارة — قابلة للتغيير بعد التقييم</li>
+      </ul>
+    </div>
+    <div class="card" style="border-right:4px solid var(--lavender)">
+      <div class="card-head"><span class="card-ico">🎨</span><h3>٥ · الدورات التدريبية</h3></div>
+      <ul>
+        <li>دورات ديناميكية قابلة للإنشاء والتعديل</li>
+        <li>أمثلة: رسم / أعمال فنية / قرآن / قراءة / إنجليزي</li>
+        <li>تحديد الأيام بالتاريخ والساعة لكل أسبوع</li>
+        <li>عدد المشاركين المسموح (مثلاً 30 طالب)</li>
+        <li>مدة محددة (يومية / أسبوعية / شهرية)</li>
+        <li>التفعيل/الإيقاف بزر واحد من الإدارة</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert al-sky">
+    <div class="al-ico">📚</div>
+    <div><strong>منصة وزارة التعليم:</strong> عند الاشتراك بها، المركز يرفع مواد المذاكرة والفيديوهات يومياً. الأم تدخل وتشوف كل المرفوعات بدون رسائل واتساب يومية. إن لم تفتح المنصة، تُرسَل للأم مباشرة. الاختبارات المركزية (الوزارة) مرتان في السنة: ترم 1 وترم 2.</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ٩ · المالية والتقسيط ══════ -->
+<section id="s9" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--gold-pale)">💰</div>
+    <div>
+      <h2>٩ · نظام المالية والتقسيط</h2>
+      <p>نظام مالي متكامل يُغطي جميع حالات الدفع مع تتبع دقيق للأقساط والمديونيات.</p>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-head"><span class="card-ico">💳</span><h3>طرق الدفع</h3></div>
+      <p>
+        <span class="tag tg-sage">💵 كاش</span>
+        <span class="tag tg-sky">🏦 تحويل بنكي</span>
+        <span class="tag tg-gold">📅 أقساط (عدد قابل للتخصيص)</span>
+      </p>
+      <div class="alert al-gold" style="margin-top:12px;font-size:13px">
+        <div class="al-ico" style="font-size:16px">📌</div>
+        <div>عند الأقساط: الإدارة تحدد عدد الدفعات + مواعيد الاستحقاق. دفعة أولى عند التسجيل، ثم الباقي حسب الجدول.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-ico">🏷️</span><h3>الخصومات والكوبونات</h3></div>
+      <ul>
+        <li>خصم الأخوة: % محدد من الإدارة</li>
+        <li>خصم الأيتام: يرفع وثيقة + موافقة الإدارة</li>
+        <li>حالات خاصة (أب غير عامل/مسجون): وثيقة رسمية + موافقة</li>
+        <li>كوبونات: بكود + صلاحية + حد استخدام</li>
+        <li>الخصم يُطبَّق تلقائياً عند التأكيد</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px">
+    <div class="card-head"><span class="card-ico">💼</span><h3>نظام عمولات المعلمات — مثال توضيحي</h3></div>
+    <div class="fin-flow">
+      <div class="fin-cell" style="background:var(--sage-pale)">
+        <h5>💰 السعر الإجمالي للعميل</h5>
+        <p style="font-size:1.5rem;font-weight:900;color:var(--sage)">150 ريال</p>
+        <p>هذا هو الذي يظهر فقط لولي الأمر — لا يرى التقسيم الداخلي</p>
+      </div>
+      <div class="fin-cell">
+        <h5>🏢 حصة المركز</h5>
+        <p style="font-size:1.3rem;font-weight:900;color:var(--sky)">70 ريال</p>
+        <p>نسبة تُحدد من الإدارة عند إنشاء الدرس</p>
+      </div>
+      <div class="fin-cell">
+        <h5>🔗 حصة الوسيط</h5>
+        <p style="font-size:1.3rem;font-weight:900;color:var(--gold)">10 ريال</p>
+        <p>عمولة الوسيط (اختيارية)</p>
+      </div>
+      <div class="fin-cell" style="background:var(--lavender-pale)">
+        <h5>👩‍🏫 حصة المعلمة</h5>
+        <p style="font-size:1.3rem;font-weight:900;color:var(--lavender)">70 ريال</p>
+        <p>الباقي يذهب للمعلمة المعيَّنة على الدرس</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="card-ico">👩‍🏫</span><h3>أنواع رواتب المعلمات</h3></div>
+    <div class="grid-3" style="margin-top:14px">
+      <div style="background:var(--sage-pale);border-radius:10px;padding:16px">
+        <h4 style="font-size:13px;font-weight:800;color:var(--sage);margin-bottom:8px">راتب ثابت</h4>
+        <p style="font-size:12.5px;color:var(--text-body)">للمعلمات في التعليم الأساسي (الصباح). مبلغ ثابت كل شهر بغض النظر عن عدد الطلاب.</p>
+      </div>
+      <div style="background:var(--lavender-pale);border-radius:10px;padding:16px">
+        <h4 style="font-size:13px;font-weight:800;color:var(--lavender);margin-bottom:8px">نسبة عمولة</h4>
+        <p style="font-size:12.5px;color:var(--text-body)">للمعلمات في التقوية والدورات. نسبة محددة من كل درس/طالب. تتراكم شهرياً وتُحسب مع الراتب.</p>
+      </div>
+      <div style="background:var(--gold-pale);border-radius:10px;padding:16px">
+        <h4 style="font-size:13px;font-weight:800;color:#8a6a0a;margin-bottom:8px">مزيج (راتب + نسبة)</h4>
+        <p style="font-size:12.5px;color:var(--text-body)">معلمة صباح براتب ثابت + تعطي دروساً مسائية (تقوية) بنسبة. النظام يجمع الاثنين تلقائياً.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ١٠ · الإشعارات ══════ -->
+<section id="s10" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--rose-pale)">🔔</div>
+    <div>
+      <h2>١٠ · منظومة الإشعارات التلقائية</h2>
+      <p>كل حدث في النظام يُولّد إشعاراً للطرف المعني تلقائياً.</p>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>الحدث (Trigger)</th><th>المستقبِل</th><th>القناة</th><th>مضمون الإشعار</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>✅ قبول طلب التسجيل</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span><span class="tag tg-sky">Email</span></td><td>"تم قبول تسجيل طفلكم [الاسم] في الترم [X]. رسالة تفصيلية + بيانات الدخول."</td></tr>
+        <tr><td>❌ رفض طلب التسجيل</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span><span class="tag tg-sky">Email</span></td><td>"نأسف، تم رفض الطلب لـ[السبب]. يمكنك تعديل البيانات وإعادة التقديم."</td></tr>
+        <tr><td>📅 قسط متأخر</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span></td><td>"تذكير: القسط رقم [X] المستحق [التاريخ] قيمته [المبلغ] لم يُسدَّد بعد."</td></tr>
+        <tr><td>✅ استلام دفعة</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span><span class="tag tg-sky">Email</span></td><td>"تم استلام دفعتكم [المبلغ]. الرصيد المتبقي [المبلغ]. إيصال مرفق."</td></tr>
+        <tr><td>❌ غياب الطالب</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span></td><td>"نعلمكم بغياب [الاسم] اليوم [التاريخ]. إن كان لديكم عذر، أبلغونا."</td></tr>
+        <tr><td>✅ انصراف الطالب</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span></td><td>"تم انصراف [الاسم] اليوم [الوقت] مع [اسم المستلم]."</td></tr>
+        <tr><td>📊 درجة جديدة</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span></td><td>"تم تسجيل درجة [الاسم] في [المادة]: [الدرجة]. تفاصيل أكثر في البوابة."</td></tr>
+        <tr><td>📊 تقييم شهري</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span><span class="tag tg-sky">Email</span></td><td>"تقرير تقييم [الاسم] لشهر [X] جاهز. المجموع الكلي: [الدرجة]/200. اضغط للعرض."</td></tr>
+        <tr><td>📤 رفع محتوى جديد</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span></td><td>"تم رفع مادة [اليوم] على المنصة. ادخلي وشوفي مذاكرة [اسم الطفل]."</td></tr>
+        <tr><td>🎯 تأكيد اشتراك التقوية</td><td>ولي الأمر</td><td><span class="tag tg-sage">WhatsApp</span><span class="tag tg-sky">Email</span></td><td>"تم تأكيد اشتراك [الاسم] في درس [المادة] يوم [الأيام]. السعر [المبلغ]."</td></tr>
+        <tr><td>💰 إشعار مالي للمعلمة</td><td>المعلمة</td><td><span class="tag tg-sky">النظام</span></td><td>"راتبك لشهر [X]: ثابت [مبلغ] + عمولات [مبلغ] = إجمالي [مبلغ]."</td></tr>
+        <tr><td>📢 إعلان رسمي جديد</td><td>الجميع</td><td><span class="tag tg-sage">WhatsApp</span><span class="tag tg-sky">Email</span></td><td>محتوى الإعلان الرسمي + رابط PDF</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ١١ · الصلاحيات ══════ -->
+<section id="s11" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--lavender-pale)">🔐</div>
+    <div>
+      <h2>١١ · الأدوار والصلاحيات</h2>
+    </div>
+  </div>
+  <div class="roles">
+    <div class="rcard rc-admin">
+      <h4 style="color:#8a6a0a">🔑 مدير النظام (Super Admin)</h4>
+      <ul>
+        <li>✅ كل صلاحيات النظام</li>
+        <li>✅ إدارة الموظفين والمعلمات</li>
+        <li>✅ إدارة الترمات والباكجات</li>
+        <li>✅ الإدارة المالية الكاملة</li>
+        <li>✅ رواتب المعلمات وعمولاتهن</li>
+        <li>✅ إعدادات الإشعارات</li>
+        <li>✅ Audit Log الكامل</li>
+        <li>✅ إنشاء الإعلانات الرسمية</li>
+        <li>✅ إرسال تقييمات الوزارة</li>
+      </ul>
+    </div>
+    <div class="rcard rc-staff">
+      <h4 style="color:var(--sage)">💼 الموظف / المشرف (Staff)</h4>
+      <ul>
+        <li>✅ إدارة الطلاب والحضور</li>
+        <li>✅ مراجعة طلبات الاشتراك</li>
+        <li>✅ تسجيل الدفعات المالية</li>
+        <li>✅ عرض التقييمات</li>
+        <li>✅ التقارير (محدودة)</li>
+        <li>⚠️ رواتب المعلمات (حسب إذن)</li>
+        <li>❌ إنشاء الترمات والباكجات</li>
+        <li>❌ إعدادات النظام</li>
+      </ul>
+    </div>
+    <div class="rcard rc-teacher">
+      <h4 style="color:#2d5f8a">👩‍🏫 المعلمة (Teacher)</h4>
+      <ul>
+        <li>✅ تسجيل حضور فصلها</li>
+        <li>✅ إدخال درجات طلابها</li>
+        <li>✅ إدخال تقييمات القدرات</li>
+        <li>✅ رفع المحتوى التعليمي</li>
+        <li>✅ عرض راتبها وعمولاتها</li>
+        <li>✅ قائمة طلابها فقط</li>
+        <li>❌ بيانات المعلمات الأخريات</li>
+        <li>❌ الإعدادات والمالية</li>
+      </ul>
+    </div>
+    <div class="rcard rc-parent">
+      <h4 style="color:#a04a44">👪 ولي الأمر (Parent)</h4>
+      <ul>
+        <li>✅ تسجيل وإدارة أبنائه</li>
+        <li>✅ متابعة الحضور والدرجات</li>
+        <li>✅ عرض التقييمات والتقدم</li>
+        <li>✅ الوضع المالي وتسجيل الدفع</li>
+        <li>✅ اشتراك في التقوية/الدورات</li>
+        <li>✅ عرض المحتوى التعليمي</li>
+        <li>❌ تعديل الحقيبة الدراسية</li>
+        <li>❌ أي بيانات لطالب آخر</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ١٢ · قاعدة البيانات ══════ -->
+<section id="s12" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--sage-pale)">🗄️</div>
+    <div>
+      <h2>١٢ · مخطط قاعدة البيانات</h2>
+    </div>
+  </div>
+  <div class="db-grid">
+    <div class="dbt"><div class="dbt-h" style="background:var(--sage)">👪 parent_users</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">father_name | mother_name</div>
+      <div class="dbf">national_id_father | mother</div>
+      <div class="dbf">phone | email</div>
+      <div class="dbf">password_hash</div>
+      <div class="dbf">transport_type</div>
+      <div class="dbf">created_at</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--gold);color:var(--text-dark)">🧒 students</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> parent_id</div>
+      <div class="dbf">full_name (4 أجزاء)</div>
+      <div class="dbf">national_id</div>
+      <div class="dbf">birth_date_hijri</div>
+      <div class="dbf">age_calculated</div>
+      <div class="dbf">neighborhood | district</div>
+      <div class="dbf">hobbies | fav_food | allergies</div>
+      <div class="dbf">fears | interests</div>
+      <div class="dbf">created_at</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--sky)">🏫 terms</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">name | academic_year</div>
+      <div class="dbf">type (general/international)</div>
+      <div class="dbf">start_date | end_date</div>
+      <div class="dbf">registration_from | to</div>
+      <div class="dbf">max_students</div>
+      <div class="dbf">status (upcoming/active/closed)</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--rose)">📦 packages</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">name | type</div>
+      <div class="dbf">price_per_term</div>
+      <div class="dbf">price_per_year</div>
+      <div class="dbf">is_mandatory (boolean)</div>
+      <div class="dbf">description</div>
+      <div class="dbf">is_active</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--lavender)">📋 subscriptions</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> student_id</div>
+      <div class="dbf"><span class="fk">FK</span> term_id</div>
+      <div class="dbf">selected_packages (JSON)</div>
+      <div class="dbf">total_amount</div>
+      <div class="dbf">discount_amount</div>
+      <div class="dbf">payment_method</div>
+      <div class="dbf">status (pending/approved/rejected)</div>
+      <div class="dbf">approved_by | approved_at</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:#7a9088">💳 installments</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> subscription_id</div>
+      <div class="dbf">installment_number</div>
+      <div class="dbf">amount | due_date</div>
+      <div class="dbf">paid_date | paid_amount</div>
+      <div class="dbf">status (pending/paid/late)</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--sage)">📅 attendance</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> student_id</div>
+      <div class="dbf">date | check_in | check_out</div>
+      <div class="dbf">status</div>
+      <div class="dbf">receiver_name</div>
+      <div class="dbf">notes</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--gold);color:var(--text-dark)">📊 evaluations</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> student_id</div>
+      <div class="dbf"><span class="fk">FK</span> teacher_id</div>
+      <div class="dbf">eval_month | eval_year</div>
+      <div class="dbf">physical_scores (JSON 5 items)</div>
+      <div class="dbf">motor_scores | mental_scores</div>
+      <div class="dbf">sensory | social | language</div>
+      <div class="dbf">cognitive | imagination</div>
+      <div class="dbf">total_score</div>
+      <div class="dbf">sent_to_ministry (boolean)</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--sky)">👩‍🏫 teachers</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">name | phone | email</div>
+      <div class="dbf">salary_type (fixed/commission/both)</div>
+      <div class="dbf">base_salary</div>
+      <div class="dbf">commission_rate (%)</div>
+      <div class="dbf">intermediary_rate (%)</div>
+      <div class="dbf">is_active</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--rose)">🎯 tutoring_sessions</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> teacher_id</div>
+      <div class="dbf">subject_id</div>
+      <div class="dbf">session_type (individual/group)</div>
+      <div class="dbf">price_total</div>
+      <div class="dbf">center_share | teacher_share</div>
+      <div class="dbf">intermediary_share</div>
+      <div class="dbf">schedule (JSON)</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--lavender)">🎨 courses</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">name | description</div>
+      <div class="dbf">max_participants</div>
+      <div class="dbf">price | duration_days</div>
+      <div class="dbf">schedule_by_week (JSON)</div>
+      <div class="dbf">is_active | registration_open</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:#5a8a70">🎁 coupons</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">code</div>
+      <div class="dbf">type (percentage/fixed)</div>
+      <div class="dbf">value</div>
+      <div class="dbf">max_uses | used_count</div>
+      <div class="dbf">valid_from | valid_until</div>
+      <div class="dbf">is_active</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--text-dark)">📝 audit_logs</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> user_id</div>
+      <div class="dbf">action | entity_type | entity_id</div>
+      <div class="dbf">old_values (JSON)</div>
+      <div class="dbf">new_values (JSON)</div>
+      <div class="dbf">ip | created_at</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--sage)">🔔 notifications</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">recipient_type | recipient_id</div>
+      <div class="dbf">type | message</div>
+      <div class="dbf">channel (whatsapp/email/system)</div>
+      <div class="dbf">status (sent/read/failed)</div>
+      <div class="dbf">sent_at</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--gold);color:var(--text-dark)">📢 announcements</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">title | body</div>
+      <div class="dbf">created_by</div>
+      <div class="dbf">pdf_file_path</div>
+      <div class="dbf">sent_to_parents</div>
+      <div class="dbf">created_at</div>
+    </div></div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ١٣ · التقنيات ══════ -->
+<section id="s13" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--sky-pale)">⚙️</div>
+    <div>
+      <h2>١٣ · التقنيات المقترحة</h2>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-bottom:18px">
+    <div class="card" style="border-top:4px solid var(--sage)">
+      <div class="card-head"><span class="card-ico">🥇</span><h3>الخيار الأول: Laravel + Vue.js (مُوصى به)</h3></div>
+      <p>Laravel للـ Backend (نظام صلاحيات قوي، Sanctum للـ API، Scheduler للمهام التلقائية) + Vue.js أو Inertia.js للـ Frontend. MySQL لقاعدة البيانات. الأنسب لمشاريع المؤسسات التعليمية.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--sky)">
+      <div class="card-head"><span class="card-ico">🥈</span><h3>الخيار الثاني: Next.js + Node.js</h3></div>
+      <p>Next.js للـ Frontend + Node.js/Express للـ Backend. PostgreSQL لقاعدة البيانات. مناسب إذا الفريق لديه خلفية JavaScript قوية وتريد SSR لصفحات ولي الأمر.</p>
+    </div>
+  </div>
+  <div class="grid-4">
+    <div class="card" style="text-align:center;padding:20px 16px">
+      <div style="font-size:28px;margin-bottom:8px">🗄️</div>
+      <h4 style="font-size:13px;font-weight:800;margin-bottom:4px">قاعدة البيانات</h4>
+      <p style="font-size:12px">MySQL / PostgreSQL</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px 16px">
+      <div style="font-size:28px;margin-bottom:8px">📱</div>
+      <h4 style="font-size:13px;font-weight:800;margin-bottom:4px">WhatsApp API</h4>
+      <p style="font-size:12px">Twilio / Meta Cloud</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px 16px">
+      <div style="font-size:28px;margin-bottom:8px">📄</div>
+      <h4 style="font-size:13px;font-weight:800;margin-bottom:4px">توليد PDF</h4>
+      <p style="font-size:12px">DomPDF / Puppeteer</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px 16px">
+      <div style="font-size:28px;margin-bottom:8px">📧</div>
+      <h4 style="font-size:13px;font-weight:800;margin-bottom:4px">البريد الإلكتروني</h4>
+      <p style="font-size:12px">SendGrid / Mailgun</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px 16px">
+      <div style="font-size:28px;margin-bottom:8px">⏰</div>
+      <h4 style="font-size:13px;font-weight:800;margin-bottom:4px">مهام تلقائية</h4>
+      <p style="font-size:12px">Cron / Laravel Scheduler</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px 16px">
+      <div style="font-size:28px;margin-bottom:8px">☁️</div>
+      <h4 style="font-size:13px;font-weight:800;margin-bottom:4px">التخزين السحابي</h4>
+      <p style="font-size:12px">AWS S3 / DigitalOcean</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px 16px">
+      <div style="font-size:28px;margin-bottom:8px">📊</div>
+      <h4 style="font-size:13px;font-weight:800;margin-bottom:4px">تصدير Excel</h4>
+      <p style="font-size:12px">PhpSpreadsheet</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px 16px">
+      <div style="font-size:28px;margin-bottom:8px">🔒</div>
+      <h4 style="font-size:13px;font-weight:800;margin-bottom:4px">الأمان</h4>
+      <p style="font-size:12px">JWT + 2FA + SSL</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ١٤ · خطة التطوير ══════ -->
+<section id="s14" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--gold-pale)">🗓️</div>
+    <div>
+      <h2>١٤ · خطة التطوير المقترحة (6 مراحل)</h2>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-line"><div class="phase-dot"></div><div class="phase-line-bar"></div></div>
+        <div class="phase-body">
+          <h4><span class="ph-tag" style="background:var(--rose-pale);color:var(--rose)">مرحلة ١</span> البنية التحتية والمستخدمون <span class="ph-tag" style="background:var(--sage-pale);color:var(--sage)">3–4 أسابيع</span></h4>
+          <p>إعداد السيرفر + قاعدة البيانات | نظام المستخدمين والصلاحيات | بوابة تسجيل ولي الأمر | إدارة الترمات والباكجات الأساسية | مراجعة طلبات الاشتراك</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-line"><div class="phase-dot"></div><div class="phase-line-bar"></div></div>
+        <div class="phase-body">
+          <h4><span class="ph-tag" style="background:var(--gold-pale);color:#8a6a0a">مرحلة ٢</span> إدارة الطلاب والمالية <span class="ph-tag" style="background:var(--sage-pale);color:var(--sage)">3–4 أسابيع</span></h4>
+          <p>ملف الطالب الكامل | نظام الباكجات المرن | المدفوعات والتقسيط | الكوبونات والخصومات | إيصالات PDF | التقارير المالية الأساسية</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-line"><div class="phase-dot"></div><div class="phase-line-bar"></div></div>
+        <div class="phase-body">
+          <h4><span class="ph-tag" style="background:var(--sky-pale);color:var(--sky)">مرحلة ٣</span> الحضور والمعلمات <span class="ph-tag" style="background:var(--sage-pale);color:var(--sage)">2–3 أسابيع</span></h4>
+          <p>نظام الحضور والانصراف | بوابة المعلمة | إدخال الدرجات | رواتب المعلمات وعمولاتهن | حضور المعلمات + أنشطتهن</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-line"><div class="phase-dot"></div><div class="phase-line-bar"></div></div>
+        <div class="phase-body">
+          <h4><span class="ph-tag" style="background:var(--lavender-pale);color:var(--lavender)">مرحلة ٤</span> التقييم والتعليم <span class="ph-tag" style="background:var(--sage-pale);color:var(--sage)">2–3 أسابيع</span></h4>
+          <p>نظام تقييم القدرات الثمانية | التقييمات الأسبوعية/الشهرية/الترمية | التقوية والتأسيس والدورات | نظام الاختبارات | ربط منصة الوزارة</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-line"><div class="phase-dot"></div><div class="phase-line-bar"></div></div>
+        <div class="phase-body">
+          <h4><span class="ph-tag" style="background:var(--rose-pale);color:var(--rose)">مرحلة ٥</span> الإشعارات والتقارير <span class="ph-tag" style="background:var(--sage-pale);color:var(--sage)">2 أسبوعين</span></h4>
+          <p>ربط WhatsApp API | ربط SMTP | Cron Jobs للفحص التلقائي | قوالب الرسائل | صفحة الإعلانات الرسمية + PDF | تقرير الوزارة الجاهز | Audit Log</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-line"><div class="phase-dot"></div></div>
+        <div class="phase-body">
+          <h4><span class="ph-tag" style="background:var(--sage-pale);color:var(--sage)">مرحلة ٦</span> الاختبار والإطلاق <span class="ph-tag" style="background:var(--sage-pale);color:var(--sage)">2 أسبوعين</span></h4>
+          <p>اختبار كل السيناريوهات | اختبار الأداء | تدريب فريق الحضانة | إطلاق تجريبي لترم واحد | تصحيح الأخطاء | الإطلاق الكامل</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="text-align:center;margin-bottom:16px">
+        <div class="card-head" style="justify-content:center"><span class="card-ico">⏱️</span><h3>إجمالي مدة التطوير</h3></div>
+        <p style="font-size:3rem;font-weight:900;color:var(--sage);line-height:1">14–18</p>
+        <p style="font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:8px">أسبوعاً</p>
+        <p style="font-size:13px;color:var(--text-muted)">حسب حجم الفريق وتعقيد ربط منصة الوزارة وWhatsApp API</p>
+      </div>
+      <div class="card">
+        <div class="card-head"><span class="card-ico">👥</span><h3>الفريق المقترح</h3></div>
+        <p>
+          <span class="tag tg-gold">1 × مدير مشروع</span>
+          <span class="tag tg-sage">1-2 × مطور Backend</span>
+          <span class="tag tg-sky">1 × مطور Frontend</span>
+          <span class="tag tg-rose">1 × مختبر QA</span>
+          <span class="tag tg-lav">1 × مصمم UI/UX</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ══════ ١٥ · التحسينات ══════ -->
+<section id="s15" class="sec">
+  <div class="sec-head">
+    <div class="sec-ico" style="background:var(--sage-pale)">💡</div>
+    <div>
+      <h2>١٥ · التحسينات والإضافات المقترحة</h2>
+    </div>
+  </div>
+
+  <div class="alert al-sage" style="margin-bottom:20px">
+    <div class="al-ico">📌</div>
+    <div><span class="tag tg-rose">يجب</span> ضروري للعمل | <span class="tag tg-gold">مُوصى به</span> يُحسّن الكفاءة | <span class="tag tg-sage">مستقبلاً</span> قيمة مضافة في مراحل قادمة</div>
+  </div>
+
+  <div class="impr">
+    <div class="icard ip-must">
+      <h4><span class="tag tg-rose">يجب</span> 🔒 تشفير بيانات الأطفال</h4>
+      <p>بيانات الأطفال الحساسة (الهوية، الصور، التقارير الطبية) يجب تشفيرها على السيرفر ولا تُعرض إلا لأصحاب الصلاحية.</p>
+    </div>
+    <div class="icard ip-must">
+      <h4><span class="tag tg-rose">يجب</span> 🔑 تحقق بخطوتين للمديرين</h4>
+      <p>Two-Factor Authentication لحسابات الإدارة والموظفين لحماية بيانات الأطفال وأولياء الأمور.</p>
+    </div>
+    <div class="icard ip-must">
+      <h4><span class="tag tg-rose">يجب</span> 💾 نسخ احتياطية تلقائية</h4>
+      <p>Backup يومي لقاعدة البيانات والملفات. حفظ 30 يوماً على الأقل على خادم منفصل.</p>
+    </div>
+    <div class="icard ip-should">
+      <h4><span class="tag tg-gold">مُوصى به</span> 📱 تطبيق جوال لولي الأمر</h4>
+      <p>تطبيق خفيف لولي الأمر يُتيح المتابعة الفورية، الإشعارات، وطلبات الاشتراك من الهاتف مباشرة.</p>
+    </div>
+    <div class="icard ip-should">
+      <h4><span class="tag tg-gold">مُوصى به</span> 📊 لوحة إحصاءات تفاعلية</h4>
+      <p>رسوم بيانية حية: نسب الحضور، التقييمات عبر الوقت، الإيرادات الشهرية، أداء المعلمات.</p>
+    </div>
+    <div class="icard ip-should">
+      <h4><span class="tag tg-gold">مُوصى به</span> 🌐 دعم اللغة الإنجليزية</h4>
+      <p>للروضة الدولية: واجهة بالإنجليزي لأولياء الأمور الأجانب وتقارير التقييم بالإنجليزي.</p>
+    </div>
+    <div class="icard ip-should">
+      <h4><span class="tag tg-gold">مُوصى به</span> 🔍 بحث شامل موحَّد</h4>
+      <p>بحث واحد يُعطي نتائج من الطلاب، أولياء الأمور، الاشتراكات، والمعلمات في لحظة.</p>
+    </div>
+    <div class="icard ip-should">
+      <h4><span class="tag tg-gold">مُوصى به</span> 📤 استيراد جماعي من Excel</h4>
+      <p>إضافة بيانات طلاب متعددين دفعةً واحدة من ملف Excel بدلاً من الإدخال الفردي.</p>
+    </div>
+    <div class="icard ip-nice">
+      <h4><span class="tag tg-sage">مستقبلاً</span> 🤖 تحليل تقدم الطفل بالذكاء الاصطناعي</h4>
+      <p>تحليل تلقائي لتقييمات الطفل على مدى الترمات وتقديم توصيات للمعلمة وولي الأمر.</p>
+    </div>
+    <div class="icard ip-nice">
+      <h4><span class="tag tg-sage">مستقبلاً</span> 📅 تقويم موحَّد تفاعلي</h4>
+      <p>تقويم داخلي للإدارة والمعلمات يُظهر: مواعيد الاختبارات، الفعاليات، أيام الغياب.</p>
+    </div>
+    <div class="icard ip-nice">
+      <h4><span class="tag tg-sage">مستقبلاً</span> 💬 دردشة داخلية مع ولي الأمر</h4>
+      <p>نظام مراسلة داخلي بين الإدارة/المعلمة وولي الأمر بدون الحاجة لواتساب الشخصي.</p>
+    </div>
+    <div class="icard ip-nice">
+      <h4><span class="tag tg-sage">مستقبلاً</span> 🖼️ ألبوم صور الطفل</h4>
+      <p>رفع صور أنشطة الطفل من الحضانة وعرضها لولي الأمر في بوابته — مع حماية الخصوصية.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <strong>نظام إدارة الحضانة ومركز الضيافة</strong> — تابع لهيئة التنمية<br>
+  وثيقة التخطيط الشاملة v1.0 | 15 قسماً · 22+ صفحة إدارة · 5 أنظمة تعليمية · 8 محاور تقييم · 15 جدول قاعدة بيانات · 6 مراحل تطوير<br>
+  <span style="opacity:0.35;font-size:11px;margin-top:8px;display:block">  مع تحياتي م. عمار & احمد __ جميع الحقوق محفوظة مع نظامكوا — لا يُوزَّع إلا بإذن صريح</span>
+</footer>
+
+</body>
+</html>
