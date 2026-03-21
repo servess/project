@@ -1,0 +1,2326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymOS — نظام إدارة الجيم | الخطة الشاملة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0d0f12;
+  --ink: #151820;
+  --steel: #1e2430;
+  --mist: #f4f6fa;
+  --white: #ffffff;
+  --orange: #f4622a;
+  --orange2: #ff8c42;
+  --orange-pale: #fff3ee;
+  --blue-slate: #2a4a7f;
+  --blue-pale: #eef3fb;
+  --teal: #1a8a72;
+  --teal-pale: #e6f7f3;
+  --red: #c0392b;
+  --red-pale: #fdecea;
+  --amber: #e6a817;
+  --amber-pale: #fef8e7;
+  --body: #3a4155;
+  --muted: #8a92a6;
+  --border: #e2e6f0;
+  --card: #ffffff;
+  --shadow: 0 2px 16px rgba(15,20,40,0.08);
+  --shadow-md: 0 6px 32px rgba(15,20,40,0.12);
+  --shadow-lg: 0 16px 64px rgba(15,20,40,0.16);
+  --r: 14px;
+  --r-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--mist);
+  color: var(--black);
+  line-height: 1.75;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 0;
+  min-height: 480px;
+}
+.hero-left {
+  padding: 64px 56px 56px;
+  position: relative;
+  z-index: 2;
+}
+.hero-right {
+  background: var(--orange);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-right-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 2px, transparent 2px, transparent 12px);
+}
+.hero-right-ico {
+  font-size: 120px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
+  line-height: 1;
+  text-align: center;
+}
+.hero-right-ico span {
+  display: block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+.hero-corner-dots {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(circle, rgba(244,98,42,0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(244,98,42,0.15);
+  border: 1px solid rgba(244,98,42,0.4);
+  color: var(--orange2);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: 'Barlow Condensed', 'Cairo', sans-serif;
+  font-size: 3.6rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--orange);
+  -webkit-text-stroke: 0px;
+}
+.hero-sub {
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+.hero-power {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hp {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hp .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+.hero-stats {
+  display: flex;
+  gap: 0;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 28px;
+}
+.hstat {
+  flex: 1;
+  padding-left: 24px;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+.hstat:last-child { border: none; }
+.hstat:first-child { padding-left: 0; }
+.hstat-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hstat-lbl { font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 600; }
+
+/* ─── NAV ─── */
+.top-nav {
+  background: var(--ink);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid var(--orange);
+}
+.top-nav::-webkit-scrollbar { display: none; }
+.top-nav a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  padding: 13px 18px;
+  font-size: 12.5px;
+  font-weight: 800;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.5px;
+}
+.top-nav a:hover {
+  color: #fff;
+  border-bottom-color: var(--orange);
+  background: rgba(244,98,42,0.08);
+}
+
+/* ─── MAIN ─── */
+.wrap { max-width: 1280px; margin: 0 auto; padding: 52px 28px 120px; }
+
+/* ─── SECTIONS ─── */
+.sec { margin-bottom: 72px; }
+.sec-hd {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1.5px solid var(--border);
+}
+.sec-ico {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.sec-hd h2 {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--black);
+  margin-bottom: 3px;
+}
+.sec-hd p { font-size: 13.5px; color: var(--muted); max-width: 680px; }
+
+/* ─── CARDS ─── */
+.g3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 16px; }
+.g2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px,1fr)); gap: 16px; }
+.g4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 14px; }
+
+.card {
+  background: var(--card);
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+}
+.card-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.card-hd h3 { font-size: 14.5px; font-weight: 800; color: var(--black); }
+.card p, .card li { font-size: 13.5px; color: var(--body); }
+.card ul { list-style: none; padding: 0; }
+.card li {
+  padding: 4.5px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.card li:last-child { border: none; }
+.card li::before { content: '▸'; color: var(--orange); font-size: 10px; margin-top: 6px; flex-shrink: 0; }
+
+/* ─── TAGS ─── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin: 2px;
+  letter-spacing: 0.3px;
+}
+.tg-or { background: var(--orange-pale); color: #c0380a; }
+.tg-bl { background: var(--blue-pale); color: var(--blue-slate); }
+.tg-tl { background: var(--teal-pale); color: #0e5c48; }
+.tg-rd { background: var(--red-pale); color: #8b1c14; }
+.tg-am { background: var(--amber-pale); color: #8a6200; }
+.tg-dk { background: var(--ink); color: #fff; }
+.tg-gy { background: #f0f2f8; color: var(--muted); }
+
+/* ─── ALERTS ─── */
+.al {
+  border-radius: var(--r-sm);
+  padding: 13px 16px;
+  font-size: 13.5px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 12px 0;
+}
+.al-ico { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.al-or { background: var(--orange-pale); border-right: 3px solid var(--orange); color: #7a2e06; }
+.al-tl { background: var(--teal-pale); border-right: 3px solid var(--teal); color: #0a3d2e; }
+.al-rd { background: var(--red-pale); border-right: 3px solid var(--red); color: #6e1212; }
+.al-bl { background: var(--blue-pale); border-right: 3px solid var(--blue-slate); color: #1a2e5a; }
+.al-am { background: var(--amber-pale); border-right: 3px solid var(--amber); color: #5a4000; }
+
+/* ─── TABLES ─── */
+.tbl { overflow-x: auto; border-radius: var(--r); box-shadow: var(--shadow); border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; background: var(--card); }
+thead { background: var(--ink); }
+th { padding: 13px 16px; font-size: 12px; font-weight: 800; color: #fff; text-align: right; white-space: nowrap; letter-spacing: 0.4px; }
+td { padding: 12px 16px; font-size: 13px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--body); }
+tr:last-child td { border: none; }
+tr:hover td { background: #f8f9fd; }
+
+/* ─── FLOW ─── */
+.flow {
+  background: var(--card);
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+  overflow-x: auto;
+}
+.flow-title {
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--orange);
+  margin-bottom: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.fr { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: nowrap; margin: 8px 0; }
+.fn {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  min-width: 100px;
+  flex-shrink: 0;
+  line-height: 1.35;
+}
+.fnl { font-size: 10px; opacity: 0.75; margin-top: 3px; }
+.fn-dk { background: var(--ink); color: #fff; }
+.fn-or { background: var(--orange); color: #fff; }
+.fn-tl { background: var(--teal); color: #fff; }
+.fn-bl { background: var(--blue-slate); color: #fff; }
+.fn-rd { background: var(--red); color: #fff; }
+.fn-am { background: var(--amber); color: #fff; }
+.fn-gy { background: #8a92a6; color: #fff; }
+.fn-lt { background: #f0f2f8; color: var(--black); border: 1px solid var(--border); }
+.fa { font-size: 18px; color: #c0c8d8; flex-shrink: 0; }
+.fo { font-size: 11px; font-weight: 800; color: var(--muted); padding: 0 3px; }
+.fdv { text-align: center; color: var(--muted); font-size: 12.5px; margin: 6px 0; }
+
+/* ─── SYSMAP ─── */
+.sysmap { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 20px; align-items: center; }
+.smap-col h4 { font-size: 10.5px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; text-align: center; }
+.sbox { border-radius: 8px; padding: 9px 12px; font-size: 12px; font-weight: 700; margin-bottom: 7px; text-align: center; color: #fff; }
+.scenter {
+  background: linear-gradient(150deg, var(--black), var(--ink) 60%, var(--steel));
+  border-radius: 16px;
+  padding: 32px 20px;
+  color: #fff;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1rem;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(244,98,42,0.5);
+}
+.scenter .ss { font-size: 11px; opacity: 0.55; font-weight: 400; margin-top: 10px; line-height: 2; }
+
+/* ─── PAGE LIST ─── */
+.pl { display: flex; flex-direction: column; gap: 10px; }
+.pi {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--card);
+  border-radius: 10px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+}
+.pi:hover { box-shadow: var(--shadow-md); }
+.pn {
+  background: var(--ink);
+  color: #fff;
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.pi h4 { font-size: 14px; font-weight: 800; margin-bottom: 5px; }
+.pi p { font-size: 13px; color: var(--body); }
+.pt { margin-top: 8px; }
+
+/* ─── ROLES ─── */
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; }
+.rc {
+  border-radius: var(--r);
+  padding: 22px;
+  border: 2px solid;
+}
+.rc h4 { font-size: 14px; font-weight: 800; margin-bottom: 12px; }
+.rc ul { list-style: none; padding: 0; }
+.rc li { font-size: 12.5px; padding: 4px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.rc li:last-child { border: none; }
+.rc-admin { border-color: var(--orange); background: var(--orange-pale); }
+.rc-captain { border-color: var(--blue-slate); background: var(--blue-pale); }
+.rc-reception { border-color: var(--teal); background: var(--teal-pale); }
+
+/* ─── DB ─── */
+.dbg { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 12px; }
+.dbt { background: var(--card); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); }
+.dbt-h { padding: 9px 13px; font-size: 12px; font-weight: 800; color: #fff; }
+.dbt-b { padding: 10px 13px; }
+.dbf { font-size: 11.5px; color: var(--muted); padding: 3px 0; border-bottom: 1px solid #f0f2f8; }
+.dbf:last-child { border: none; }
+.pk { color: var(--orange); font-weight: 800; font-size: 10px; }
+.fk { color: var(--blue-slate); font-weight: 800; font-size: 10px; }
+
+/* ─── PRICING ─── */
+.price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 14px; }
+.price-card {
+  border-radius: var(--r);
+  border: 2px solid var(--border);
+  padding: 22px;
+  text-align: center;
+  background: var(--card);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.price-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.price-card.featured {
+  border-color: var(--orange);
+  background: linear-gradient(145deg, #fff8f5, #fff);
+}
+.price-card .pc-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.price-card h3 { font-size: 14px; font-weight: 800; margin-bottom: 6px; }
+.price-card .pc-icon { font-size: 36px; margin-bottom: 10px; }
+.price-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-radius: 6px;
+  font-size: 12.5px;
+  background: #f4f6fa;
+}
+.price-field .pf-lbl { color: var(--muted); font-weight: 600; }
+.price-field .pf-val { font-weight: 800; color: var(--black); }
+.pf-editable { background: #fff8f0 !important; border: 1px dashed var(--orange); cursor: pointer; }
+.pf-editable .pf-val { color: var(--orange); }
+
+/* ─── WHATSAPP ─── */
+.wa-flow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.wa-template {
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.wa-t-head {
+  background: #25d366;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wa-t-head h4 { color: #fff; font-size: 13px; font-weight: 800; }
+.wa-t-head .wa-type { font-size: 10px; background: rgba(255,255,255,0.25); color: #fff; padding: 2px 8px; border-radius: 50px; font-weight: 700; }
+.wa-t-body { padding: 14px 16px; }
+.wa-bubble {
+  background: #e2f8eb;
+  border-radius: 0 12px 12px 12px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: #1a3a20;
+  line-height: 1.7;
+  margin-bottom: 8px;
+  position: relative;
+}
+.wa-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-left-color: transparent;
+  border-bottom-color: #e2f8eb;
+  border-top: 0;
+}
+.wa-var { color: var(--orange); font-weight: 800; }
+.wa-delay { font-size: 11px; color: var(--muted); text-align: left; }
+
+/* ─── SECURITY ─── */
+.sec-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 14px; }
+.sec-item {
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+  border-right: 4px solid;
+  box-shadow: var(--shadow);
+}
+.sec-item h4 { font-size: 14px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.sec-item p { font-size: 13px; color: var(--body); }
+
+/* ─── PHASES ─── */
+.phases { display: flex; flex-direction: column; gap: 0; }
+.phase { display: flex; gap: 18px; }
+.ph-line { display: flex; flex-direction: column; align-items: center; }
+.ph-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--orange); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--orange); flex-shrink: 0; margin-top: 20px; }
+.ph-bar { flex: 1; width: 2px; background: var(--border); margin: 4px 0; }
+.ph-body { padding-bottom: 26px; flex: 1; }
+.ph-body h4 { font-size: 14px; font-weight: 800; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ph-body p { font-size: 13px; color: var(--body); }
+.ph-tag { font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 4px; }
+
+/* ─── IMPR ─── */
+.impr { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 14px; }
+.ip {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-right: 4px solid;
+  box-shadow: var(--shadow);
+}
+.ip-must { border-right-color: var(--red); }
+.ip-should { border-right-color: var(--orange); }
+.ip-nice { border-right-color: var(--teal); }
+.ip h4 { font-size: 13.5px; font-weight: 800; margin-bottom: 6px; }
+.ip p { font-size: 13px; color: var(--body); }
+
+/* ─── CHECKIN SCREEN ─── */
+.checkin-mock {
+  background: var(--ink);
+  border-radius: var(--r);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.checkin-mock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, rgba(244,98,42,0.03) 0px, rgba(244,98,42,0.03) 1px, transparent 1px, transparent 40px),
+                    repeating-linear-gradient(0deg, rgba(244,98,42,0.03) 0px, rgba(244,98,42,0.03) 1px, transparent 1px, transparent 40px);
+}
+.cm-header { text-align: center; margin-bottom: 24px; position: relative; z-index: 2; }
+.cm-header h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
+.cm-header p { color: rgba(255,255,255,0.4); font-size: 12px; }
+.cm-player {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+.cm-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+  font-weight: 900;
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.cm-info h4 { color: #fff; font-size: 16px; font-weight: 800; }
+.cm-info p { color: rgba(255,255,255,0.5); font-size: 12.5px; }
+.cm-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+.cs-active { background: rgba(26,138,114,0.25); color: #4de8c4; }
+.cs-expired { background: rgba(192,57,43,0.25); color: #ff7b70; }
+.cm-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+.cm-meta-item {
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: center;
+}
+.cm-meta-item .mv { font-size: 1.3rem; font-weight: 900; color: var(--orange); font-family: 'Barlow Condensed', sans-serif; }
+.cm-meta-item .ml { font-size: 11px; color: rgba(255,255,255,0.4); }
+.cm-btn {
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+}
+.cm-btn-manual {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.6);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  margin-top: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── NOTIF MONEY ─── */
+.debt-mock {
+  background: var(--card);
+  border-radius: var(--r);
+  border: 2px solid var(--orange);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.debt-head {
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.debt-head h3 { color: #fff; font-size: 15px; font-weight: 800; }
+.debt-head span { color: rgba(255,255,255,0.7); font-size: 13px; }
+.debt-item {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.debt-item:last-child { border: none; }
+.debt-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+.debt-sub { font-size: 12px; color: var(--muted); }
+.debt-amt { font-size: 1.2rem; font-weight: 900; color: var(--red); font-family: 'Barlow Condensed', sans-serif; }
+.debt-badge { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; background: var(--red-pale); color: var(--red); }
+
+/* ─── HR ─── */
+hr { border: none; border-top: 1.5px dashed var(--border); margin: 36px 0; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--black);
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  padding: 32px;
+  font-size: 13px;
+}
+footer strong { color: var(--orange); }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-right { min-height: 200px; }
+  .sysmap { grid-template-columns: 1fr; }
+  .wrap { padding: 32px 16px 80px; }
+  .wa-flow { grid-template-columns: 1fr; }
+  .hero-left { padding: 36px 24px; }
+  .hero h1 { font-size: 2.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ HERO ════ -->
+<div class="hero">
+  <div class="hero-corner-dots"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">💪 وثيقة التخطيط v1.0 — نظام متكامل</div>
+      <h1>GYMOS<br><em>نظام إدارة</em><br>الجيم</h1>
+      <p class="hero-sub">منظومة رقمية دقيقة وسريعة تُحارب التلاعب — تُدير الأعضاء، الاشتراكات، الحضور بـ QR، المالية، والواتساب في مكان واحد.</p>
+      <div class="hero-power">
+        <div class="hp"><div class="dot"></div>دقة + سرعة + أمان</div>
+        <div class="hp"><div class="dot"></div>QR تلقائي</div>
+        <div class="hp"><div class="dot"></div>WhatsApp ذكي</div>
+        <div class="hp"><div class="dot"></div>تنبيهات الديون</div>
+        <div class="hp"><div class="dot"></div>منع التلاعب</div>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-val">14</div><div class="hstat-lbl">وحدة في النظام</div></div>
+        <div class="hstat"><div class="hstat-val">22+</div><div class="hstat-lbl">صفحة إدارة</div></div>
+        <div class="hstat"><div class="hstat-val">100%</div><div class="hstat-lbl">Log لكل حركة</div></div>
+        <div class="hstat"><div class="hstat-val">0</div><div class="hstat-lbl">حذف حقيقي</div></div>
+        <div class="hstat"><div class="hstat-val">2FA</div><div class="hstat-lbl">حماية المدير</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-pattern"></div>
+      <div class="hero-right-ico">
+        🏋️
+        <span>GymOS System</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ NAV ════ -->
+<nav class="top-nav">
+  <a href="#s1">🗺️ نظرة عامة</a>
+  <a href="#s2">👥 الكيانات</a>
+  <a href="#s3">📋 الاشتراكات</a>
+  <a href="#s4">📱 نظام QR</a>
+  <a href="#s5">🖥️ لوحة الإدارة</a>
+  <a href="#s5b">🗂️ هيكل الصفحات</a>
+  <a href="#s6">💬 واتساب</a>
+  <a href="#s6b">📣 الحملات</a>
+  <a href="#s7">💰 المالية</a>
+  <a href="#s7b">👨‍💼 الشيفتات</a>
+  <a href="#s8">🔐 الأمان</a>
+  <a href="#s9">👤 الصلاحيات</a>
+  <a href="#s10">🗄️ قاعدة البيانات</a>
+  <a href="#s11">⚙️ التقنيات</a>
+  <a href="#s12">🗓️ خطة التطوير</a>
+  <a href="#s13">💡 التحسينات</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ════ ١ نظرة عامة ════ -->
+<section id="s1" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#fff3ee">🗺️</div>
+    <div>
+      <h2>١ · نظرة عامة على المنظومة</h2>
+      <p>نظام إدارة جيم متكامل — قوته في الدقة والسرعة ومنع التلاعب. ثلاثة مستويات وصول: إدارة، كابتن، استقبال.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px;padding:28px">
+    <div class="card-hd"><span style="font-size:20px">🗺️</span><h3>خريطة المنظومة</h3></div>
+    <div class="sysmap">
+      <div class="smap-col">
+        <h4>المدخلات</h4>
+        <div class="sbox" style="background:var(--orange)">📱 QR Scanner</div>
+        <div class="sbox" style="background:var(--blue-slate)">👤 تسجيل أعضاء</div>
+        <div class="sbox" style="background:var(--teal)">💳 مدفوعات</div>
+        <div class="sbox" style="background:#8a92a6">📊 Excel Import</div>
+        <div class="sbox" style="background:var(--red)">⚠️ تنبيهات ديون</div>
+      </div>
+      <div class="smap-col" style="text-align:center">
+        <div class="scenter">
+          🏋️ GymOS Core
+          <div class="ss">
+            إدارة الأعضاء<br>
+            الاشتراكات الديناميكية<br>
+            حضور QR + يدوي<br>
+            الخزنة والمالية<br>
+            WhatsApp Bot<br>
+            صلاحيات + Logs
+          </div>
+        </div>
+      </div>
+      <div class="smap-col">
+        <h4>المخرجات</h4>
+        <div class="sbox" style="background:var(--teal)">💬 رسائل واتساب</div>
+        <div class="sbox" style="background:var(--orange)">📊 تقارير مالية</div>
+        <div class="sbox" style="background:var(--blue-slate)">🎫 كارت QR</div>
+        <div class="sbox" style="background:var(--red)">⚠️ تنبيهات انتهاء</div>
+        <div class="sbox" style="background:#8a92a6">📄 PDF تقارير</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-hd"><span style="font-size:20px">🎯</span><h3>القوة الأساسية</h3></div>
+      <ul>
+        <li>كل حركة مسجلة بـ Log لا يُمسح</li>
+        <li>QR مرتبط بعضو واحد فقط — لا يتكرر</li>
+        <li>منع تسجيل الحضور مرتين في 45 دقيقة</li>
+        <li>كل موظف عنده خزنة منفصلة</li>
+        <li>Soft Delete — لا حذف حقيقي أبداً</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span style="font-size:20px">🔥</span><h3>أنواع المستخدمين</h3></div>
+      <p>
+        <span class="tag tg-or">🔑 Admin — كل الصلاحيات</span>
+        <span class="tag tg-bl">🥊 كابتن — حصص + حضور</span>
+        <span class="tag tg-tl">💼 استقبال — تسجيل + متابعة</span>
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span style="font-size:20px">🔗</span><h3>التكاملات الخارجية</h3></div>
+      <p>
+        <span class="tag tg-tl">💬 WhatsApp Cloud API</span>
+        <span class="tag tg-or">📱 QR Code Generator</span>
+        <span class="tag tg-bl">📧 SMTP Email</span>
+        <span class="tag tg-gy">📊 Excel Export</span>
+        <span class="tag tg-rd">📄 PDF Reports</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ٢ الكيانات ════ -->
+<section id="s2" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#eef3fb">👥</div>
+    <div>
+      <h2>٢ · الكيانات الأساسية</h2>
+      <p>المكوّنات الجوهرية للنظام وعلاقاتها.</p>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <div class="card-hd"><span>👤</span><h3 style="color:var(--orange)">العضو (Client)</h3></div>
+      <ul>
+        <li>ID داخلي + QR ID فريد</li>
+        <li>الاسم الثلاثي</li>
+        <li>رقم واتساب</li>
+        <li>السن والعنوان</li>
+        <li>الحالة: نشط / مجمد / منتهي</li>
+        <li>صورة العضو (للتعرف البصري)</li>
+        <li>تاريخ آخر زيارة</li>
+        <li>ملاحظات خاصة</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue-slate)">
+      <div class="card-hd"><span>📋</span><h3 style="color:var(--blue-slate)">الاشتراك (Subscription)</h3></div>
+      <ul>
+        <li>النوع: عادي / حديد / فتنس / بريفت</li>
+        <li>السعر (متغير — ديناميكي)</li>
+        <li>عدد الحصص (أو غير محدود)</li>
+        <li>مدة الاشتراك</li>
+        <li>الخصومات (3 شهور / 6 شهور)</li>
+        <li>حصص متبقية</li>
+        <li>تاريخ بداية / نهاية</li>
+        <li>الحالة: نشط / مجمد / منتهٍ</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--teal)">
+      <div class="card-hd"><span>📅</span><h3 style="color:var(--teal)">الحضور (Attendance)</h3></div>
+      <ul>
+        <li>العضو + التاريخ والوقت</li>
+        <li>نوع التسجيل: QR / يدوي</li>
+        <li>اسم الموظف المسجِّل</li>
+        <li>نوع الحصة</li>
+        <li>الحصص المتبقية بعد الخصم</li>
+        <li>ملاحظات (للتسجيل اليدوي)</li>
+        <li>لا يُحذف — Soft Delete فقط</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--red)">
+      <div class="card-hd"><span>🏋️</span><h3 style="color:var(--red)">الحصة (Class)</h3></div>
+      <ul>
+        <li>اسم الحصة + نوعها</li>
+        <li>الكابتن المسؤول</li>
+        <li>التوقيت والأيام</li>
+        <li>عدد الحضور الفعلي</li>
+        <li>الأنواع: عادي / حديد / خاص</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--amber)">
+      <div class="card-hd"><span>💰</span><h3 style="color:#8a6200">المعاملة المالية</h3></div>
+      <ul>
+        <li>النوع: إيراد / مصروف</li>
+        <li>المبلغ + التاريخ</li>
+        <li>الموظف الذي سجّلها</li>
+        <li>الخزنة المرتبطة</li>
+        <li>مرفق إيصال (اختياري)</li>
+        <li>لا تُحذف أبداً</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #8a92a6">
+      <div class="card-hd"><span>📝</span><h3 style="color:#5a6270">سجل الأحداث (Log)</h3></div>
+      <ul>
+        <li>كل عملية في النظام مسجلة</li>
+        <li>من فعل + الوقت بالثانية</li>
+        <li>نوع العملية</li>
+        <li>القيمة قبل وبعد</li>
+        <li>IP + رقم الجهاز</li>
+        <li>لا يُمسح + لا يُعدَّل</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ٣ الاشتراكات ════ -->
+<section id="s3" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#fff3ee">📋</div>
+    <div>
+      <h2>٣ · الاشتراكات الديناميكية (أسعار متغيرة)</h2>
+      <p>الاشتراكات كاملة مرونة — الأسعار والمدد والحصص تُعدَّل من لوحة الإدارة بدون مطور.</p>
+    </div>
+  </div>
+
+  <div class="al al-or" style="margin-bottom:20px">
+    <div class="al-ico">⚙️</div>
+    <div><strong>نظام ديناميكي بالكامل:</strong> كل حقل (السعر / الحصص / المدة / الخصم) قابل للتعديل من لوحة التحكم. لا يحتاج لمبرمج. التغيير يُسجَّل في Audit Log تلقائياً.</div>
+  </div>
+
+  <div class="price-grid" style="margin-bottom:22px">
+    <div class="price-card">
+      <div class="pc-icon">🏃</div>
+      <h3>عادي</h3>
+      <div class="price-field pf-editable"><span class="pf-lbl">السعر/شهر</span><span class="pf-val">150 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">سعر 3 شهور</span><span class="pf-val">400 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">سعر 6 شهور</span><span class="pf-val">700 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field"><span class="pf-lbl">الحصص</span><span class="pf-val">∞ غير محدود</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">المدة (يوم)</span><span class="pf-val">30 ✎</span></div>
+    </div>
+    <div class="price-card featured">
+      <div class="pc-badge">الأكثر طلباً</div>
+      <div class="pc-icon">🏋️</div>
+      <h3>حديد</h3>
+      <div class="price-field pf-editable"><span class="pf-lbl">السعر/شهر</span><span class="pf-val">200 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">سعر 3 شهور</span><span class="pf-val">550 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">سعر 6 شهور</span><span class="pf-val">950 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field"><span class="pf-lbl">الحصص</span><span class="pf-val">∞ غير محدود</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">المدة (يوم)</span><span class="pf-val">30 ✎</span></div>
+    </div>
+    <div class="price-card">
+      <div class="pc-icon">💪</div>
+      <h3>فتنس</h3>
+      <div class="price-field pf-editable"><span class="pf-lbl">السعر/شهر</span><span class="pf-val">180 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">سعر 3 شهور</span><span class="pf-val">480 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">سعر 6 شهور</span><span class="pf-val">850 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field"><span class="pf-lbl">الحصص</span><span class="pf-val">∞ غير محدود</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">المدة (يوم)</span><span class="pf-val">30 ✎</span></div>
+    </div>
+    <div class="price-card">
+      <div class="pc-icon">🎯</div>
+      <h3>بريفت (خاص)</h3>
+      <div class="price-field pf-editable"><span class="pf-lbl">السعر/حصة</span><span class="pf-val">80 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">باقة 10 حصص</span><span class="pf-val">700 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">باقة 20 حصة</span><span class="pf-val">1300 ﭼ . ﻢ ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">عدد الحصص</span><span class="pf-val">يُحدد ✎</span></div>
+      <div class="price-field pf-editable"><span class="pf-lbl">المدة (يوم)</span><span class="pf-val">60 ✎</span></div>
+    </div>
+  </div>
+
+  <div class="al al-tl">
+    <div class="al-ico">💡</div>
+    <div><strong>اشتراك غير محدود:</strong> يُفعَّل بتحديد "غير محدود" في حقل الحصص. الحضور يُسجَّل بدون خصم. <strong>اشتراك بعدد حصص:</strong> كل حضور يخصم حصة — عندما يصل للصفر يُرسَل تنبيه واتساب تلقائياً.</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ٤ نظام QR ════ -->
+<section id="s4" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#e6f7f3">📱</div>
+    <div>
+      <h2>٤ · نظام QR والحضور — المواصفات الكاملة</h2>
+      <p>القلب النابض للنظام — سرعة تسجيل الحضور مع دقة كاملة ومنع أي تلاعب.</p>
+    </div>
+  </div>
+
+  <!-- QR HARDWARE PROTOCOL -->
+  <div class="card" style="margin-bottom:18px;border:2px solid var(--teal)">
+    <div class="card-hd"><span>🔌</span><h3 style="color:var(--teal)">بروتوكول ربط القارئ بالنظام — HID Keyboard Emulation (الموصى به)</h3></div>
+    <div class="al al-tl" style="margin:14px 0 10px">
+      <div class="al-ico">✅</div>
+      <div><strong>الخيار المُختار: USB HID Keyboard Emulation</strong> — القارئ يعمل كـ Keyboard ويكتب الـ QR Code مباشرة في حقل Input في المتصفح. لا يحتاج Driver ولا Software. يعمل على أي جهاز كمبيوتر بدون إعداد. يعمل بدون إنترنت (Offline). الأشيع في الجيمات والمحلات. السعر في مصر: 150–500 ج.م.</div>
+    </div>
+    <div class="g3">
+      <div style="background:var(--teal-pale);border-radius:10px;padding:14px;border:1px solid #b0d8cc">
+        <h4 style="font-size:13px;font-weight:800;color:var(--teal);margin-bottom:8px">🟢 HID — كيف يعمل؟</h4>
+        <p style="font-size:12px;color:var(--body)">القارئ يمسح QR ← يكتب النص كـ keyboard في input مخصص في المتصفح ← JavaScript يستمع لـ keydown + Enter ← يُرسل QR للـ Backend عبر WebSocket ← الاستجابة لحظية ← يُعيَّد focus للـ input تلقائياً للمسح التالي</p>
+      </div>
+      <div style="background:#f8f4ff;border-radius:10px;padding:14px;border:1px solid #d8c8f0">
+        <h4 style="font-size:13px;font-weight:800;color:#7030b0;margin-bottom:8px">🟡 IP Camera — بديل</h4>
+        <p style="font-size:12px;color:var(--body)">كاميرا IP تُمسح QR من مسافة — أغلى ثمناً وأعقد في الإعداد. تحتاج مكتبة ZXing أو OpenCV على السيرفر. مناسبة لو الجيم عاوز تجربة "بدون لمس" لكن ليست ضرورية.</p>
+      </div>
+      <div style="background:#fff8e8;border-radius:10px;padding:14px;border:1px solid #f0d888">
+        <h4 style="font-size:13px;font-weight:800;color:#8a6000;margin-bottom:8px">🟡 كاميرا الموبايل — بديل</h4>
+        <p style="font-size:12px;color:var(--body)">html5-qrcode يفتح كاميرا الهاتف. مناسب كـ backup لو القارئ اتعطل. يُستخدم في التسجيل اليدوي من الموبايل. لكن مش بديل مناسب للحضور السريع.</p>
+      </div>
+    </div>
+    <div class="flow" style="margin-top:14px">
+      <div class="flow-title">▶ Flow HID → WebSocket → Real-time Response</div>
+      <div class="fr">
+        <div class="fn fn-dk">QR Scanner يمسح<div class="fnl">USB HID Input</div></div>
+        <div class="fa">→</div>
+        <div class="fn fn-or">Browser يستقبل<div class="fnl">keydown + Enter event</div></div>
+        <div class="fa">→</div>
+        <div class="fn fn-bl">Socket.io يُرسل<div class="fnl">attendance:qr_scan</div></div>
+        <div class="fa">→</div>
+        <div class="fn fn-tl">Server يتحقق<div class="fnl">فحص كامل &lt; 100ms</div></div>
+        <div class="fa">→</div>
+        <div class="fn fn-or">Socket.io يرجع<div class="fnl">النتيجة فوراً</div></div>
+      </div>
+      <div class="fdv">▼ النتيجة تظهر على الشاشة في أقل من ثانية</div>
+    </div>
+  </div>
+
+  <!-- MEMBER PHOTO SECURITY -->
+  <div class="card" style="margin-bottom:18px;border-right:4px solid var(--red)">
+    <div class="card-hd"><span>📸</span><h3 style="color:var(--red)">صورة العضو — ميزة أمان أساسية (مش اختيارية)</h3></div>
+    <p style="font-size:13.5px;color:var(--body);margin-bottom:12px">فور مسح أي QR، تظهر صورة العضو بوضوح على الشاشة قبل تسجيل الحضور. موظف الاستقبال يتأكد بصرياً. إذا الوجه لا يطابق → يرفض يدوياً. هذا يمنع إعارة الكارت لشخص آخر.</p>
+    <div class="g2">
+      <div class="al al-rd" style="margin:0">
+        <div class="al-ico">🚨</div>
+        <div><strong>لماذا هي أمان أساسي:</strong> الكارت الورقي أو البلاستيكي سهل الإعارة. بدون التحقق البصري، عضو منتهي يُعطي كارته لصديقه. الصورة + الاسم على الشاشة كبيرة يُصعّل التحايل.</div>
+      </div>
+      <div class="al al-tl" style="margin:0">
+        <div class="al-ico">⚙️</div>
+        <div><strong>التنفيذ:</strong> الصورة تُرفع عند إضافة العضو (اختيارية لكن مُوصى بها بشدة) | تُعرض كـ avatar كبير في شاشة الحضور | إذا لا توجد صورة: يظهر Placeholder مع تحذير "لا توجد صورة - تحقق يدوياً"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORIGINAL QR FLOW -->
+  <div class="g2" style="margin-bottom:20px">
+    <div>
+      <div class="flow" style="margin-bottom:14px">
+        <div class="flow-title">▶ Flow منطق التحقق من الحضور</div>
+        <div class="fr">
+          <div class="fn fn-dk">عضو يمسح الكارت<div class="fnl">QR Card</div></div>
+          <div class="fa">←</div>
+          <div class="fn fn-or">HID Input → Socket<div class="fnl">أقل من 100ms</div></div>
+          <div class="fa">←</div>
+          <div class="fn fn-bl">Server يتحقق<div class="fnl">4 فحوصات</div></div>
+        </div>
+        <div class="fdv">▼ نتائج التحقق الأربعة</div>
+        <div class="fr">
+          <div class="fn fn-tl">✓ نشط + غير مكرر<div class="fnl">تسجيل + خصم حصة</div></div>
+          <div class="fo">|</div>
+          <div class="fn fn-rd">✗ مكرر قبل 4 ساعات<div class="fnl">رفض + سبب</div></div>
+          <div class="fo">|</div>
+          <div class="fn fn-am">⚠ اشتراك منتهي<div class="fnl">اسم + "يلزم تجديد"</div></div>
+          <div class="fo">|</div>
+          <div class="fn fn-rd">🚫 حصص انتهت<div class="fnl">"انتهت الحصص"</div></div>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-hd"><span>⚡</span><h3>قواعد الحضور</h3></div>
+          <ul>
+            <li>منع التكرار: 4 ساعات (قابل للضبط من الإعدادات)</li>
+            <li>خصم حصة تلقائياً (إذا اشتراك بحصص)</li>
+            <li>تسجيل: الوقت + التاريخ + الموظف + نوع الحصة</li>
+            <li>sessions_before و sessions_after مُسجَّلان</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span>🔧</span><h3>حالات الطوارئ</h3></div>
+          <ul>
+            <li>كارت اتقرأ مرتين → رفض الثانية + Log فوري</li>
+            <li>الجهاز فصل → وضع Offline تلقائي</li>
+            <li>نسي الكارت → تسجيل يدوي من الاستقبال</li>
+            <li>اشتراك مجمَّد → رفض + "الاشتراك مجمَّد"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="checkin-mock">
+      <div class="cm-header">
+        <h3>⚡ شاشة تسجيل الحضور</h3>
+        <p>اضغط QR أو ابحث يدوياً</p>
+      </div>
+      <div class="cm-player">
+        <div class="cm-avatar">أح</div>
+        <div class="cm-info">
+          <h4>أحمد محمد السيد</h4>
+          <p>ID: GYM-00142 | حديد</p>
+          <div class="cm-status cs-active">● نشط — صورة مطابقة ✓</div>
+        </div>
+      </div>
+      <div class="cm-meta">
+        <div class="cm-meta-item"><div class="mv">12</div><div class="ml">حصص متبقية</div></div>
+        <div class="cm-meta-item"><div class="mv">8</div><div class="ml">أيام تبقت</div></div>
+        <div class="cm-meta-item"><div class="mv">أمس</div><div class="ml">آخر زيارة</div></div>
+        <div class="cm-meta-item"><div class="mv">23</div><div class="ml">إجمالي زيارات</div></div>
+      </div>
+      <button class="cm-btn">✅ تسجيل الحضور الآن</button>
+      <button class="cm-btn-manual">✏️ تسجيل يدوي</button>
+    </div>
+  </div>
+
+  <!-- QR CARD INVENTORY -->
+  <div class="card" style="margin-bottom:18px">
+    <div class="card-hd"><span>💳</span><h3>إدارة مخزون الكروت المادية (QR Cards Inventory)</h3></div>
+    <div class="g2" style="margin-top:14px">
+      <div>
+        <p style="font-size:13.5px;color:var(--body);margin-bottom:12px">صفحة مستقلة لتتبع الكروت المادية المُطبَّعة — تمنع الفوضى وتوثّق كل كارت من لحظة طباعته حتى إلغائه.</p>
+        <ul class="card" style="border:none;padding:0;box-shadow:none">
+          <li>كل كارت له: QR ID + حالة + العضو المرتبط به</li>
+          <li>حالات الكارت: متاح / مُوزَّع / مفقود / ملغي / تالف</li>
+          <li>تقرير: كم كارت مطبوع / موزع / مفقود</li>
+          <li>إشعار للأدمن عند تسجيل كارت مفقود</li>
+        </ul>
+      </div>
+      <div>
+        <div class="al al-or" style="margin:0 0 10px">
+          <div class="al-ico">🔄</div>
+          <div><strong>Flow استبدال كارت ضائع أو تالف:</strong><br>
+          ① الموظف يفتح ملف العضو<br>
+          ② يضغط "استبدال الكارت"<br>
+          ③ يُدخل سبب الاستبدال (ضائع / تالف)<br>
+          ④ النظام يُلغي QR القديم فوراً (لا يعمل في الحضور)<br>
+          ⑤ يُنشئ QR ID جديد مرتبط بنفس العضو<br>
+          ⑥ يُطبع الكارت الجديد<br>
+          ⑦ Log كامل: من أجرى + متى + السبب</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFLINE MODE -->
+  <div class="card">
+    <div class="card-hd"><span>📵</span><h3>وضع Offline — التفاصيل الكاملة</h3></div>
+    <div class="g3" style="margin-top:14px">
+      <div style="background:var(--orange-pale);border-radius:10px;padding:14px;border:1px solid #fdd">
+        <h4 style="font-size:13px;font-weight:800;color:var(--orange);margin-bottom:8px">📦 التخزين المحلي</h4>
+        <p style="font-size:12px;color:var(--body)"><strong>IndexedDB</strong> (مش localStorage) — يتحمل كميات أكبر من البيانات ويعمل بشكل async. الحضور المُسجَّل offline يُحفظ فيه مؤقتاً مع timestamp دقيق.</p>
+      </div>
+      <div style="background:var(--blue-pale);border-radius:10px;padding:14px;border:1px solid #c8d8f0">
+        <h4 style="font-size:13px;font-weight:800;color:var(--blue-slate);margin-bottom:8px">🔄 المزامنة عند العودة</h4>
+        <p style="font-size:12px;color:var(--body)">عند عودة الاتصال: Service Worker يكتشف الـ online event ← يُرسل الحضور المحفوظ للسيرفر ← السيرفر يتحقق منه ويُطبّق نفس قواعد منع التكرار بالـ timestamp الأصلي.</p>
+      </div>
+      <div style="background:var(--red-pale);border-radius:10px;padding:14px;border:1px solid #f0c8c8">
+        <h4 style="font-size:13px;font-weight:800;color:var(--red);margin-bottom:8px">⚠️ Conflict Resolution</h4>
+        <p style="font-size:12px;color:var(--body)">لو نفس QR اتسجل offline وonline في نفس الوقت: السيرفر يقارن الـ timestamps — الأول يُقبَل، الثاني يُرفض كـ "تكرار" ويُسجَّل في Log مع ملاحظة "تعارض offline/online".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ٥ لوحة الإدارة ════ -->
+<section id="s5" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#fff3ee">🖥️</div>
+    <div>
+      <h2>٥ · لوحة الإدارة — الصفحات التفصيلية</h2>
+      <p>22+ صفحة — كل صفحة بوظيفة واضحة وصلاحية محددة.</p>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>الصفحة</th>
+          <th>الوظيفة الرئيسية</th>
+          <th>المحتوى التفصيلي</th>
+          <th>الصلاحية</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td><strong>Dashboard الرئيسي</strong></td>
+          <td>نظرة فورية شاملة</td>
+          <td>أعضاء نشطين | اشتراكات تنتهي قريباً | اشتراكات انتهت | حضور اليوم | إيرادات اليوم/الشهر | أعضاء جدد | رسوم بيانية للحضور والإيرادات | تنبيهات مهمة</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td><strong>إدارة الأعضاء</strong></td>
+          <td>قائمة الأعضاء + فلاتر</td>
+          <td>بحث بالاسم/QR/رقم | فلتر بالحالة والاشتراك | تصدير Excel | إضافة عضو جديد | عرض البروفايل الكامل | تعديل البيانات</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td><strong>بروفايل العضو</strong></td>
+          <td>ملف عضو واحد كاملاً</td>
+          <td>البيانات الشخصية | كل الاشتراكات التاريخية | سجل الحضور الكامل | سجل العمليات (Logs) | عدد الحصص المتبقية | تاريخ آخر زيارة | أزرار: تجميد/تجديد/إرسال رسالة</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td><strong>إضافة / تجديد اشتراك</strong></td>
+          <td>اشتراك جديد أو تجديد</td>
+          <td>اختيار نوع الاشتراك | السعر الحالي (من الإعدادات) | تطبيق خصم يدوي مع سبب | طريقة الدفع: كاش/شبكة | إصدار QR كارت | إرسال QR واتساب تلقائياً</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td><strong>شاشة الحضور (QR)</strong></td>
+          <td>تسجيل الحضور اللحظي</td>
+          <td>QR scanner مدمج | عرض بيانات العضو فور المسح | صورته + اسمه + حالته + حصصه | زر تسجيل + زر يدوي | صوت/لون للنجاح والفشل</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-bl">كابتن</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+        <tr>
+          <td><strong>6</strong></td>
+          <td><strong>سجل الحضور</strong></td>
+          <td>كل سجلات الحضور</td>
+          <td>فلتر بالتاريخ/العضو/النوع | عرض: يدوي أو QR | اسم الموظف المسجِّل | تصدير PDF/Excel | إجمالي الحضور اليومي/الأسبوعي</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+        <tr>
+          <td><strong>7</strong></td>
+          <td><strong>التسجيل اليدوي</strong></td>
+          <td>حضور يدوي مع سبب</td>
+          <td>بحث بالاسم أو الرقم | اختيار العضو | السبب: نسي الكارت / مشكلة تقنية / غيره | تسجيل الموظف تلقائياً | Log فوري</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-bl">كابتن</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+        <tr>
+          <td><strong>8</strong></td>
+          <td><strong>إدارة الحصص</strong></td>
+          <td>إنشاء وإدارة الحصص</td>
+          <td>إضافة/تعديل حصة | اسم + نوع + وقت + الكابتن | حصص اليوم مع عدد الحضور | نوع: عادي/حديد/خاص | الكابتن المسؤول</td>
+          <td><span class="tag tg-or">Admin</span></td>
+        </tr>
+        <tr>
+          <td><strong>9</strong></td>
+          <td><strong>نظام التجميد</strong></td>
+          <td>تجميد الاشتراكات</td>
+          <td>تجميد اشتراك (سبب + مدة) | الاشتراك المجمد لا يُعدّ منتهياً | العد يتوقف | رفع التجميد | تسجيل من طلب التجميد | Log كامل</td>
+          <td><span class="tag tg-or">Admin</span></td>
+        </tr>
+        <tr>
+          <td><strong>10</strong></td>
+          <td><strong>الإدارة المالية</strong></td>
+          <td>الإيرادات والمصروفات</td>
+          <td>تسجيل إيراد (اشتراك/حصة خاصة) | تسجيل مصروف (إيجار/صيانة/راتب) | خزنة لكل موظف | تسليم واستلام بين الخزن | تقارير يومية/شهرية | صافي الأرباح</td>
+          <td><span class="tag tg-or">Admin فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>11</strong></td>
+          <td><strong>الديون والمتأخرات</strong></td>
+          <td>تتبع الأموال المستحقة</td>
+          <td>قائمة بالأعضاء الذين عليهم أموال | المبلغ المستحق + تاريخ الاستحقاق | إرسال تنبيه واتساب بضغطة | تصدير قائمة الديون | تسجيل الدفع عند الاستلام</td>
+          <td><span class="tag tg-or">Admin فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>12</strong></td>
+          <td><strong>نظام واتساب</strong></td>
+          <td>إدارة الرسائل التلقائية</td>
+          <td>تشغيل/إيقاف البوت | عرض QR ربط | الرسائل المجدولة | حالة الإرسال | القوالب قابلة للتعديل | تشغيل/إيقاف كل نوع رسالة | سجل الرسائل المرسلة</td>
+          <td><span class="tag tg-or">Admin فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>13</strong></td>
+          <td><strong>إدارة الموظفين</strong></td>
+          <td>الفريق والصلاحيات</td>
+          <td>إضافة/تعديل موظف | نوع الصلاحية: Admin/كابتن/استقبال | تعطيل/تفعيل | كلمة مرور أولية | سجل كل دخول ودخروج | IP ورقم الجهاز</td>
+          <td><span class="tag tg-or">Admin فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>14</strong></td>
+          <td><strong>التقارير</strong></td>
+          <td>تقارير شاملة قابلة للتصدير</td>
+          <td>تقرير الحضور (يومي/شهري) | تقرير الاشتراكات | تقرير الإيرادات | تقرير الموظفين | تقرير التجميد | تقرير الانتهاء | تصدير PDF/Excel</td>
+          <td><span class="tag tg-or">Admin</span></td>
+        </tr>
+        <tr>
+          <td><strong>15</strong></td>
+          <td><strong>سجل الأحداث (Audit Log)</strong></td>
+          <td>كل الإجراءات مسجلة</td>
+          <td>من فعل + متى + ماذا + القيمة قبل وبعد | IP + Device | فلتر بالموظف/النوع/التاريخ | لا يُحذف أبداً | تصدير للمراجعة</td>
+          <td><span class="tag tg-or">Admin فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>16</strong></td>
+          <td><strong>الإعدادات</strong></td>
+          <td>ضبط النظام ديناميكياً</td>
+          <td>دقائق/ساعات منع تكرار الحضور (افتراضي 4 ساعات) | أسعار الاشتراكات والمدد | إعدادات واتساب | قوالب الرسائل | عدد أيام تنبيه الانتهاء | إعدادات الخزنة | Session Timeout</td>
+          <td><span class="tag tg-or">Admin فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>17</strong></td>
+          <td><strong>إدارة كروت QR</strong></td>
+          <td>مخزون الكروت المادية</td>
+          <td>قائمة الكروت: متاح / مُوزَّع / مفقود / ملغي / تالف | من أُعطي له الكارت | تاريخ الإصدار | Modal "استبدال كارت": سبب + إلغاء القديم + إصدار جديد + Log | تقرير الكروت المفقودة</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+        <tr>
+          <td><strong>18</strong></td>
+          <td><strong>موافقة الخصومات</strong></td>
+          <td>نظام اعتماد الخصومات اليدوية</td>
+          <td>الاستقبال/الكابتن يطلب خصماً مع سبب → يذهب لـ "طلبات معلقة" → Admin يوافق أو يرفض → Notification فوري للطالب → Log كامل | لا يُطبَّق الخصم إلا بعد موافقة Admin</td>
+          <td><span class="tag tg-or">Admin — موافقة</span><span class="tag tg-tl">استقبال — طلب فقط</span></td>
+        </tr>
+        <tr>
+          <td><strong>19</strong></td>
+          <td><strong>الإيصالات والفواتير</strong></td>
+          <td>إيصال PDF لكل عملية دفع</td>
+          <td>عند كل اشتراك أو تجديد: إيصال PDF يتضمن: اسم العضو + نوع الاشتراك + المبلغ بالجنيه المصري + الخصم إن وُجد + توقيع رقمي + تاريخ وساعة | قابل للطباعة + يُرسَل على واتساب تلقائياً | أرشيف كل الإيصالات</td>
+          <td><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="al al-am" style="margin-top:16px">
+    <div class="al-ico">🏷️</div>
+    <div><strong>أنواع الحصص في الاشتراك — منطق مهم:</strong> كل اشتراك مرتبط بنوع حصة واحد فقط (عادي أو حديد). لا يمكن اشتراك واحد يشمل النوعين. إذا العضو يريد كليهما → يشتري اشتراكين منفصلين. هذا يبسّط منطق خصم الحصص ومنع التلاعب في الحضور.</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ 5b هيكل الصفحات التفصيلي ════ -->
+<section id="s5b" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#eef3fb">🗂️</div>
+    <div>
+      <h2>٥ب · هيكل الصفحات التفصيلي — ما يحدث داخل كل صفحة</h2>
+      <p>توصيف دقيق للمنطق الداخلي لكل شاشة رئيسية — ما يراه الموظف وما يفعله النظام في الخلفية.</p>
+    </div>
+  </div>
+
+  <div class="al al-bl" style="margin-bottom:20px">
+    <div class="al-ico">🔐</div>
+    <div><strong>صفحة تسجيل الدخول:</strong> JWT Token + HTTP-only Cookie | Session Timeout قابل للضبط | سجل محاولات الدخول الفاشلة (حماية Brute Force) | 2FA اختياري للأدمن | إغلاق تلقائي بعد فترة خمول</div>
+  </div>
+
+  <div class="pl">
+    <div class="pi">
+      <div class="pn">📊</div>
+      <div>
+        <h4>Dashboard — ما يجب أن يشمله بالضبط</h4>
+        <p>إجمالي الأعضاء (نشط / مجمد / منتهي) | الحضور اليوم: العدد + الأسماء | الاشتراكات الجديدة اليوم | الاشتراكات المجددة اليوم | الإيرادات اليوم والشهر | التنبيهات: اشتراكات قاربت على الانتهاء | آخر 10 عمليات (Activity Feed) | <strong>مهم:</strong> الصلاحية مراعية — موظف الرجال يرى الرجال فقط، موظف الحريم يرى الحريم فقط.</p>
+        <div class="pt"><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span><span class="tag tg-bl">كابتن (محدود)</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">👥</div>
+      <div>
+        <h4>صفحة الأعضاء — التفاصيل الدقيقة</h4>
+        <p><strong>قائمة الأعضاء:</strong> فلتر متقدم: نشط / مجمد / منتهي / رجال / حريم | بحث بالاسم أو رقم الهاتف أو QR ID | عرض: الاسم، نوع الاشتراك، تاريخ الانتهاء، الحصص المتبقية، الحالة.<br><br>
+        <strong>إضافة عضو جديد (ربط بالقارئ):</strong> القارئ يسجل رقم QR أولاً ← يُرسل للنظام | الموظف يُكمل: الاسم الثلاثي + رقم واتساب + السن + العنوان + الجنس (رجال/حريم) + نوع الاشتراك + تاريخ البداية + عدد الشهور (1/3/6) ← يُطبَّق الخصم تلقائياً | يُولَّد ID فريد مرتبط بـ QR ID (Unique Constraint) | فور الحفظ: رسالة ترحيب واتساب + صورة QR.</p>
+        <div class="pt"><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">👤</div>
+      <div>
+        <h4>بروفايل العضو — المحتوى الكامل</h4>
+        <p>بيانات العضو الكاملة + صورة (اختياري) | تاريخ الاشتراكات: كل اشتراك بتاريخه وسعره ومن أضافه | سجل الحضور: كل حصة بتاريخها ووقتها وطريقة التسجيل (QR/يدوي) واسم الموظف | الحصص الفردية (Private) منفصلة عن الاشتراك | <strong>سجل العمليات بالتفصيل:</strong> تجميد الحساب: الساعة كذا - الكابتن X | فك التجميد: الساعة كذا - الكابتن Y | تعديل البيانات: من أجرى وإيه اللي اتغير | أزرار: تجديد / تجميد / إضافة حصة يدوي / تعديل.</p>
+        <div class="pt"><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال (عرض)</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">📅</div>
+      <div>
+        <h4>شاشة الحضور — المنطق الكامل</h4>
+        <p><strong>QR Flow:</strong> القارئ يرسل QR → النظام يبحث فوراً → منطق المنع: لو نفس QR اتقرأ خلال أقل من 4 ساعات → يُرفض + تحذير (المدة قابلة للضبط من الإعدادات).<br><br>
+        <strong>حالات النتائج:</strong> ① الاشتراك منتهي → اسم العضو + "الاشتراك منتهي - يلزم التجديد" بلون أحمر | ② الاشتراك نشط → تُخصم حصة + يُسجل الدخول باللون الأخضر | ③ الحصص انتهت → تنبيه "انتهت الحصص" باللون البرتقالي.<br><br>
+        <strong>التسجيل اليدوي:</strong> الموظف يبحث بالاسم من الاشتراكات النشطة + يضيف ملاحظة "تسجيل يدوي - بواسطة [اسم الموظف]" | <strong>عرض حضور اليوم:</strong> جدول بكل من حضر + الوقت + طريقة التسجيل.</p>
+        <div class="pt"><span class="tag tg-or">Admin</span><span class="tag tg-bl">كابتن</span><span class="tag tg-tl">استقبال</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">📋</div>
+      <div>
+        <h4>صفحة إدارة الاشتراكات — التفاصيل</h4>
+        <p>لكل اشتراك: الاسم | عدد الحصص الشهرية | سعر الشهر الواحد | نسبة خصم 3 شهور | نسبة خصم 6 شهور | نوع الحصة (عادي/حديد — بيفرقوا في السعر) | نشط / موقوف | كل الحقول ديناميكية 100% قابلة للتعديل من الإعدادات.</p>
+        <div class="pt"><span class="tag tg-or">Admin فقط</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">🔔</div>
+      <div>
+        <h4>صفحة التنبيهات — أنواعها ومنطقها</h4>
+        <p>① اشتراكات قاربت على الانتهاء: عدد الأيام يُحدد من الإعدادات (3 أيام / 7 أيام مثلاً) | ② اشتراكات انتهت الحصص بتاعتها (مش بالتاريخ) | ③ اشتراكات منتهية لم تُجدَّد | زر "إرسال تذكير واتساب" لكل عضو أو Bulk | <strong>إذا فشل الإرسال:</strong> يظهر تنبيه داخلي في النظام + ملاحظة "لم تُرسل - يدوي" بدون أي رسالة خطأ مربكة للموظف.</p>
+        <div class="pt"><span class="tag tg-or">Admin</span><span class="tag tg-tl">استقبال</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">🗓️</div>
+      <div>
+        <h4>حصص اليوم (Today's Classes)</h4>
+        <p>عرض كل الحصص المجدولة اليوم | إضافة حصة جديدة: الوقت + النوع + الكابتن المسؤول | تعديل / إلغاء حصة | عدد المسجلين في كل حصة | حالة الحصة: قادمة / جارية / انتهت | سجل تلقائي في Audit Log عند أي تغيير.</p>
+        <div class="pt"><span class="tag tg-or">Admin</span><span class="tag tg-bl">كابتن</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">⚙️</div>
+      <div>
+        <h4>صفحة الإعدادات — كل ما يمكن ضبطه</h4>
+        <p>اسم الجيم والشعار | عدد ساعات/دقائق منع تكرار QR (default: 4 ساعات) | عدد أيام التنبيه قبل انتهاء الاشتراك (3 / 7 أيام) | إعدادات WhatsApp API: API Key + Phone Number ID | نصوص الرسائل الافتراضية (قابلة للتعديل) | إعداد الأعياد للرسائل التلقائية (السنوية) | تفعيل/إيقاف النسخ الاحتياطي اليومي | إعدادات Session Timeout.</p>
+        <div class="pt"><span class="tag tg-or">Admin فقط</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">❄️</div>
+      <div>
+        <h4>منطق التجميد وتمديد تاريخ الانتهاء — Logic صريح</h4>
+        <p><strong>القاعدة الأساسية:</strong> عند تجميد الاشتراك لمدة X يوم، يُمدَّد تاريخ الانتهاء تلقائياً بنفس عدد الأيام.<br><br>
+        <strong>مثال:</strong> اشتراك ينتهي 30 يناير → تجميد 15 يوم ابتداءً من 10 يناير → تاريخ الانتهاء الجديد = 14 فبراير (30 يناير + 15 يوم).<br><br>
+        <strong>في قاعدة البيانات:</strong> frozen_at | frozen_until | freeze_days_count | original_end_date | new_end_date | كل هذا مُسجَّل في Audit Log | لا يمكن للموظف تعديل تاريخ الانتهاء مباشرة — التمديد تلقائي فقط عبر منطق التجميد.</p>
+        <div class="pt"><span class="tag tg-rd">منطق حرج — يُختبر بشكل خاص</span></div>
+      </div>
+    </div>
+
+    <div class="pi">
+      <div class="pn">🎁</div>
+      <div>
+        <h4>نظام الموافقة على الخصومات — منع التلاعب</h4>
+        <p><strong>المشكلة بدون هذا النظام:</strong> موظف استقبال يُعطي خصم 50% لصديقه دون علم الإدارة.<br><br>
+        <strong>الحل:</strong> الاستقبال يكتب المبلغ المقترح + السبب → يُرسَل للأدمن كـ "طلب خصم معلق" → تنبيه Socket.io للأدمن فوراً → Admin يوافق أو يرفض مع ملاحظة → عند الموافقة: يُطبَّق الخصم ويُصدر الإيصال → Log كامل بكل خطوة.<br><br>
+        <strong>في حالة الغياب:</strong> لو الأدمن مش موجود → يمكن إعداد "خصم مسموح به بحد أقصى X%" للاستقبال بدون موافقة، وكل ما فوق هذا الحد يحتاج Admin.</p>
+        <div class="pt"><span class="tag tg-rd">أمان مالي أساسي</span><span class="tag tg-or">Admin يُعتمد</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ٦ واتساب ════ -->
+<section id="s6" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#e6f7f3">💬</div>
+    <div>
+      <h2>٦ · نظام واتساب الذكي</h2>
+      <p>إرسال منظم بدون حظر — قوالب ديناميكية قابلة للتعديل لكل نوع رسالة.</p>
+    </div>
+  </div>
+
+  <div class="al al-rd" style="margin-bottom:18px">
+    <div class="al-ico">🚫</div>
+    <div><strong>منع الحظر:</strong> Delay بين الرسائل (5–15 ثانية) | استخدام Templates رسمية | لا إرسال جماعي بسرعة | API رسمي (Meta Cloud API) | وقت إرسال منضبط (9 صباحاً - 9 مساءً)</div>
+  </div>
+
+  <div class="wa-flow">
+    <div class="wa-template">
+      <div class="wa-t-head">
+        <span>💬</span>
+        <h4>رسالة الترحيب + QR</h4>
+        <span class="wa-type">تلقائي عند التسجيل</span>
+      </div>
+      <div class="wa-t-body">
+        <div class="wa-bubble">
+          أهلاً وسهلاً <span class="wa-var">{{اسم_العضو}}</span> 💪<br>
+          تم تسجيلك بنجاح في <span class="wa-var">{{اسم_الجيم}}</span>!<br><br>
+          📋 اشتراكك: <span class="wa-var">{{نوع_الاشتراك}}</span><br>
+          📅 ينتهي: <span class="wa-var">{{تاريخ_الانتهاء}}</span><br>
+          🏋️ الحصص المتبقية: <span class="wa-var">{{عدد_الحصص}}</span><br><br>
+          كارت الدخول مرفق 👇
+        </div>
+        <div class="wa-delay">⏱ يُرسَل بعد 5 ثوانٍ من التسجيل</div>
+      </div>
+    </div>
+    <div class="wa-template">
+      <div class="wa-t-head">
+        <span>⚠️</span>
+        <h4>تنبيه انتهاء الاشتراك</h4>
+        <span class="wa-type">قبل 3 أيام (قابل للضبط)</span>
+      </div>
+      <div class="wa-t-body">
+        <div class="wa-bubble">
+          تنبيه هام 🔔<br><br>
+          عزيزي <span class="wa-var">{{اسم_العضو}}</span><br>
+          اشتراكك (<span class="wa-var">{{نوع_الاشتراك}}</span>) سينتهي خلال <span class="wa-var">{{عدد_الأيام}}</span> أيام!<br><br>
+          📅 تاريخ الانتهاء: <span class="wa-var">{{التاريخ}}</span><br>
+          🏋️ حصص متبقية: <span class="wa-var">{{الحصص}}</span><br><br>
+          للتجديد تواصل معنا الآن ⚡
+        </div>
+        <div class="wa-delay">⏱ يُرسَل الساعة 10 صباحاً</div>
+      </div>
+    </div>
+    <div class="wa-template">
+      <div class="wa-t-head">
+        <span>💰</span>
+        <h4>تنبيه الدين / المبلغ المستحق</h4>
+        <span class="wa-type">يدوي من الإدارة</span>
+      </div>
+      <div class="wa-t-body">
+        <div class="wa-bubble">
+          تذكير مالي 📌<br><br>
+          أخ <span class="wa-var">{{اسم_العضو}}</span><br>
+          يوجد مبلغ مستحق عليك بقيمة:<br>
+          💵 <span class="wa-var">{{المبلغ}}</span> ج.م<br><br>
+          التفاصيل: <span class="wa-var">{{السبب}}</span><br><br>
+          يرجى التسوية في أقرب وقت 🙏
+        </div>
+        <div class="wa-delay">⏱ يُرسَل بضغطة زر من صفحة الديون</div>
+      </div>
+    </div>
+    <div class="wa-template">
+      <div class="wa-t-head">
+        <span>🚫</span>
+        <h4>تنبيه انتهاء الحصص</h4>
+        <span class="wa-type">تلقائي عند آخر حصة</span>
+      </div>
+      <div class="wa-t-body">
+        <div class="wa-bubble">
+          تنبيه الحصص ⚡<br><br>
+          أخ <span class="wa-var">{{اسم_العضو}}</span><br>
+          هذه كانت آخر حصة في اشتراكك!<br>
+          الحصص المتبقية: <span class="wa-var">0</span> 🚫<br><br>
+          لتجديد الاشتراك وإضافة حصص:<br>
+          تواصل معنا الآن 📞
+        </div>
+        <div class="wa-delay">⏱ يُرسَل فور تسجيل آخر حصة</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="al al-tl" style="margin-top:16px">
+    <div class="al-ico">⚙️</div>
+    <div><strong>لوحة تحكم واتساب:</strong> تشغيل/إيقاف كل نوع رسالة بشكل مستقل | تعديل القوالب من الإعدادات | جدولة وقت الإرسال | سجل كل رسالة مرسلة (نجاح/فشل) | عرض QR للربط.</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ 6b الحملات ════ -->
+<section id="s6b" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#e6f7f3">📣</div>
+    <div>
+      <h2>٦ب · إرسال العروض والحملات (Campaigns)</h2>
+      <p>نظام إرسال جماعي ذكي ومنضبط للعروض والتذكيرات — مع استهداف دقيق وحماية من الحظر.</p>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:18px">
+    <div class="card">
+      <div class="card-hd"><span>🎯</span><h3>خطوات إنشاء حملة</h3></div>
+      <ul>
+        <li><strong>① اختيار الفئة المستهدفة:</strong> منتهي الاشتراك / نشط / جنس معين / نوع اشتراك معين</li>
+        <li><strong>② كتابة الرسالة:</strong> من الصفر أو اختيار Template جاهزة</li>
+        <li><strong>③ جدولة الإرسال:</strong> فوري أو وقت محدد (تاريخ + ساعة)</li>
+        <li><strong>④ معاينة قبل الإرسال:</strong> عرض عينة للرسالة + عدد المستقبلين</li>
+        <li><strong>⑤ تقرير نتائج:</strong> أُرسلت / فشلت / لم تُرسَل بعد</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span>🛡️</span><h3>حماية من الحظر في الإرسال الجماعي</h3></div>
+      <ul>
+        <li>Delay تلقائي 10–20 ثانية بين كل رسالة</li>
+        <li>لا إرسال قبل الساعة 9 صباحاً أو بعد 9 مساءً</li>
+        <li>حد يومي للرسائل (قابل للضبط من الإعدادات)</li>
+        <li>استخدام Templates معتمدة من Meta مسبقاً</li>
+        <li>توقف تلقائي إذا ظهر خطأ متكرر</li>
+        <li>سجل كامل لكل رسالة مع حالتها</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card" style="border-top:3px solid #25d366">
+      <div class="card-hd"><span>🎉</span><h3>أنواع الرسائل التلقائية</h3></div>
+      <ul>
+        <li>ترحيب عند التسجيل + QR (فوري)</li>
+        <li>تذكير انتهاء الاشتراك (X أيام قبل)</li>
+        <li>إشعار تجديد الاشتراك (عند التجديد)</li>
+        <li>إشعار تجميد الحساب + فك التجميد</li>
+        <li>تهنئة أعياد (مجدولة سنوياً)</li>
+        <li>تنبيه انتهاء الحصص (فور آخر حصة)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <div class="card-hd"><span>📊</span><h3>سجل الرسائل</h3></div>
+      <ul>
+        <li>كل رسالة مسجلة: المستقبل + المحتوى + الوقت</li>
+        <li>الحالة: أُرسلت ✅ / فشلت ❌ / معلقة ⏳</li>
+        <li>سبب الفشل إن وُجد</li>
+        <li>من أرسلها (يدوي / تلقائي)</li>
+        <li>فلتر بالنوع والتاريخ والحالة</li>
+        <li>تصدير السجل PDF/Excel</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue-slate)">
+      <div class="card-hd"><span>🔧</span><h3>API المُوصى به</h3></div>
+      <ul>
+        <li><strong>Twilio:</strong> موثوق + دعم عربي + سهل التكامل</li>
+        <li><strong>360dialog:</strong> متخصص واتساب بزنس</li>
+        <li><strong>Meta Cloud API:</strong> مباشر بدون وسيط</li>
+        <li>Templates يجب اعتمادها من Meta مسبقاً</li>
+        <li>رسائل 1-to-1 بدون مجموعات</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ٧ المالية ════ -->
+<section id="s7" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#fef8e7">💰</div>
+    <div>
+      <h2>٧ · نظام المالية والخزنة</h2>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:18px">
+    <div class="card">
+      <div class="card-hd"><span>🏦</span><h3>هيكل الخزنة</h3></div>
+      <ul>
+        <li>كل موظف له خزنة مستقلة</li>
+        <li>تسليم بين الخزن مسجَّل بتوقيع رقمي</li>
+        <li>تقرير يومي لكل خزنة</li>
+        <li>لا يمكن حذف أي معاملة</li>
+        <li>مطابقة الأرقام في نهاية اليوم</li>
+        <li>تنبيه إذا وُجد فارق</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span>📊</span><h3>تصنيف الإيرادات والمصروفات</h3></div>
+      <ul>
+        <li>إيرادات: اشتراكات / حصص خاصة / بيع مستلزمات</li>
+        <li>مصروفات: إيجار / رواتب / صيانة / غيره</li>
+        <li>كل مصروف له فئة + مرفق (فاتورة اختياري)</li>
+        <li>صافي الربح = إيرادات — مصروفات</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="debt-mock">
+    <div class="debt-head">
+      <h3>💸 تنبيهات الديون والمتأخرات</h3>
+      <span>الإجمالي: 2,450 ج.م</span>
+    </div>
+    <div class="debt-item">
+      <div>
+        <div class="debt-name">خالد عبدالرحمن</div>
+        <div class="debt-sub">اشتراك حديد — مستحق منذ 5 أيام</div>
+      </div>
+      <div style="text-align:left">
+        <div class="debt-amt">800 ﭼ . ﻢ</div>
+        <div class="debt-badge">متأخر</div>
+      </div>
+    </div>
+    <div class="debt-item">
+      <div>
+        <div class="debt-name">محمد إبراهيم</div>
+        <div class="debt-sub">تكملة اشتراك فتنس — مستحق منذ 3 أيام</div>
+      </div>
+      <div style="text-align:left">
+        <div class="debt-amt">450 ﭼ . ﻢ</div>
+        <div class="debt-badge">متأخر</div>
+      </div>
+    </div>
+    <div class="debt-item">
+      <div>
+        <div class="debt-name">سامي يوسف</div>
+        <div class="debt-sub">حصة بريفت — مستحق منذ يوم</div>
+      </div>
+      <div style="text-align:left">
+        <div class="debt-amt">1,200 ﭼ . ﻢ</div>
+        <div class="debt-badge">متأخر</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ 7b نظام الشيفتات ════ -->
+<section id="s7b" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#fef8e7">👨‍💼</div>
+    <div>
+      <h2>٧ب · نظام الشيفتات وتسليم النقدية</h2>
+      <p>نظام صارم لمنع السرقة وضمان تسوية النقدية في كل شيفت — كل ج.م مُحاسَب.</p>
+    </div>
+  </div>
+
+  <div class="al al-rd" style="margin-bottom:20px">
+    <div class="al-ico">🚨</div>
+    <div><strong>لماذا هذا النظام مهم جداً؟</strong> بدون نظام شيفتات، الموظف يمكنه استلام أموال غير مسجلة. هذا النظام يُلزم الموظف بتسوية كاملة عند انتهاء شيفته — لا يمكن إغلاق الشيفت قبل مطابقة النقدية.</div>
+  </div>
+
+  <div class="g2" style="margin-bottom:18px">
+    <div class="card">
+      <div class="card-hd"><span>🔄</span><h3>دورة حياة الشيفت</h3></div>
+      <ul>
+        <li><strong>فتح الشيفت:</strong> الموظف يسجل بداية الشيفت + رصيد الخزنة المبدئي</li>
+        <li><strong>أثناء الشيفت:</strong> كل اشتراك ودفعة تُسجَّل بالشيفت تلقائياً</li>
+        <li><strong>إغلاق الشيفت:</strong> الموظف يُدخل النقدية الموجودة فعلياً في يده</li>
+        <li><strong>المطابقة:</strong> النظام يحسب المتوقع ويقارنه بالفعلي</li>
+        <li><strong>إذا في فارق:</strong> الموظف يُوضح السبب + الإدارة تُراجع</li>
+        <li><strong>تسليم للإدارة:</strong> النقدية تُسلَّم مع تقرير الشيفت</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span>📊</span><h3>تقرير الشيفت الكامل</h3></div>
+      <ul>
+        <li>عدد الاشتراكات التي باعها الموظف</li>
+        <li>عدد الحصص التي سجّلها</li>
+        <li>إجمالي النقدية المستلمة</li>
+        <li>إجمالي الدفع بشبكة/تحويل</li>
+        <li>النقدية المتوقعة vs الفعلية</li>
+        <li>الفارق (إن وُجد) + سببه</li>
+        <li>وقت بداية ونهاية الشيفت</li>
+        <li>توقيع رقمي على التسليم</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><span>⚖️</span><h3>نظام تسليم الخزنة بين الموظفين</h3></div>
+    <div class="g3" style="margin-top:14px">
+      <div style="background:#fff3ee;border-radius:10px;padding:16px;border:1px solid #fdd">
+        <h4 style="font-size:13px;font-weight:800;color:var(--orange);margin-bottom:8px">① الموظف A يُسلِّم</h4>
+        <p style="font-size:12.5px;color:var(--body)">يُدخل المبلغ الموجود لديه | النظام يُولِّد كود تسليم | يطبع تقرير مختصر للتسليم</p>
+      </div>
+      <div style="background:#eef3fb;border-radius:10px;padding:16px;border:1px solid #c8d8f0">
+        <h4 style="font-size:13px;font-weight:800;color:var(--blue-slate);margin-bottom:8px">② الموظف B يُستلِم</h4>
+        <p style="font-size:12.5px;color:var(--body)">يؤكد المبلغ المُستلَم | إذا في فارق يُسجَّل فوراً | الاثنان يوقعان رقمياً</p>
+      </div>
+      <div style="background:#e6f7f3;border-radius:10px;padding:16px;border:1px solid #a8dece">
+        <h4 style="font-size:13px;font-weight:800;color:var(--teal);margin-bottom:8px">③ النظام يُسجِّل</h4>
+        <p style="font-size:12.5px;color:var(--body)">السجل محفوظ بالتاريخ والوقت | لا يمكن تعديله | الأدمن يرى كل التسليمات</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ٨ الأمان ════ -->
+<section id="s8" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#fdecea">🔐</div>
+    <div>
+      <h2>٨ · نظام الأمان ومنع التلاعب</h2>
+      <p>القوة الحقيقية للنظام — لا مجال لأي تلاعب أو سرقة.</p>
+    </div>
+  </div>
+  <div class="sec-items">
+    <div class="sec-item" style="border-right-color:var(--red)">
+      <h4>🚫 لا حذف حقيقي أبداً</h4>
+      <p>كل البيانات تستخدم Soft Delete. الحذف ظاهري فقط — البيانات موجودة في قاعدة البيانات وقابلة للاسترجاع.</p>
+    </div>
+    <div class="sec-item" style="border-right-color:var(--orange)">
+      <h4>📋 Log لكل حركة</h4>
+      <p>كل عملية (إضافة/تعديل/حذف ظاهري/تسجيل حضور/دفع) تُسجَّل مع: اسم الموظف + الوقت بالثانية + القيمة قبل وبعد.</p>
+    </div>
+    <div class="sec-item" style="border-right-color:var(--blue-slate)">
+      <h4>🔗 QR مرتبط بعضو واحد</h4>
+      <p>كل QR ID فريد ومرتبط بعضو واحد فقط. لا يمكن استخدامه لعضو آخر. إذا انتهى الاشتراك — QR لا يعمل.</p>
+    </div>
+    <div class="sec-item" style="border-right-color:var(--teal)">
+      <h4>⏱ منع التكرار (45 دقيقة)</h4>
+      <p>النظام يرفض تسجيل الحضور للعضو نفسه قبل مرور 45 دقيقة. المدة قابلة للتعديل من الإعدادات.</p>
+    </div>
+    <div class="sec-item" style="border-right-color:var(--amber)">
+      <h4>💻 تتبع IP والجهاز</h4>
+      <p>كل جلسة مسجلة بـ IP ورقم الجهاز. إذا تغيّر الجهاز يُرسَل تنبيه للأدمن. Session Management قوي.</p>
+    </div>
+    <div class="sec-item" style="border-right-color:#8a92a6">
+      <h4>🔒 صلاحيات دقيقة</h4>
+      <p>كل موظف يرى ويعمل فقط ما يملك صلاحية عليه. لا يوجد "رؤية زائدة". الأدمن يغلق/يفتح صلاحيات فورياً.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ٩ الصلاحيات ════ -->
+<section id="s9" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#eef3fb">👤</div>
+    <div><h2>٩ · الأدوار والصلاحيات</h2></div>
+  </div>
+  <div class="roles">
+    <div class="rc rc-admin">
+      <h4 style="color:#c0380a">🔑 Admin — المدير</h4>
+      <ul>
+        <li>✅ كل صلاحيات النظام</li>
+        <li>✅ الإدارة المالية الكاملة</li>
+        <li>✅ رواتب الموظفين</li>
+        <li>✅ إعدادات الأسعار والنظام</li>
+        <li>✅ واتساب وقوالب الرسائل</li>
+        <li>✅ Audit Log الكامل</li>
+        <li>✅ تجميد/فك تجميد الاشتراكات</li>
+        <li>✅ إدارة الخزنة والشيفتات</li>
+        <li>✅ رجال + حريم (الكل)</li>
+        <li>✅ 2FA اختياري للحماية</li>
+      </ul>
+    </div>
+    <div class="rc rc-captain">
+      <h4 style="color:var(--blue-slate)">🥊 كابتن</h4>
+      <ul>
+        <li>✅ تسجيل حضور فصله</li>
+        <li>✅ عرض بيانات أعضاء حصصه</li>
+        <li>✅ تسجيل يدوي للحضور</li>
+        <li>✅ عرض حصص اليوم</li>
+        <li>✅ رجال أو حريم أو كليهما (حسب الإعداد)</li>
+        <li>⚠️ عرض فقط — بدون تعديل مالي</li>
+        <li>❌ الإدارة المالية</li>
+        <li>❌ تعديل الاشتراكات</li>
+      </ul>
+    </div>
+    <div class="rc rc-reception">
+      <h4 style="color:var(--teal)">💼 موظف الاستقبال</h4>
+      <ul>
+        <li>✅ تسجيل الحضور QR + يدوي</li>
+        <li>✅ إضافة عضو جديد</li>
+        <li>✅ تجديد الاشتراك</li>
+        <li>✅ تسجيل الدفعات (خزنته فقط)</li>
+        <li>✅ رجال أو حريم (حسب تصريح الأدمن)</li>
+        <li>✅ فتح وإغلاق شيفته</li>
+        <li>❌ التقارير المالية الكاملة</li>
+        <li>❌ إعدادات الأسعار أو الرسائل</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="al al-or" style="margin-top:16px">
+    <div class="al-ico">⚠️</div>
+    <div><strong>صلاحية الجنس (رجال/حريم):</strong> كل موظف يُحدَّد له إذن الوصول: رجال فقط / حريم فقط / كليهما. الموظف لا يرى أعضاء الجنس الآخر في أي شاشة (القائمة / الحضور / التقارير). هذه الصلاحية مُطبَّقة على مستوى API — لا مجرد إخفاء في الواجهة.</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ١٠ قاعدة البيانات ════ -->
+<section id="s10" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#f0f2f8">🗄️</div>
+    <div><h2>١٠ · مخطط قاعدة البيانات</h2></div>
+  </div>
+  <div class="dbg">
+    <div class="dbt"><div class="dbt-h" style="background:var(--ink)">👤 users (موظفون)</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">name | phone | email</div>
+      <div class="dbf">password_hash</div>
+      <div class="dbf">role (admin/captain/reception)</div>
+      <div class="dbf">permissions (JSON)</div>
+      <div class="dbf">is_active | last_login</div>
+      <div class="dbf">device_fingerprint</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--orange)">👤 clients</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">qr_id (unique)</div>
+      <div class="dbf">name | phone | age | address</div>
+      <div class="dbf">photo_url</div>
+      <div class="dbf">status (active/frozen/expired)</div>
+      <div class="dbf">last_visit_at</div>
+      <div class="dbf">notes | deleted_at</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--blue-slate)">📋 subscription_types</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">name (عادي/حديد/فتنس/بريفت)</div>
+      <div class="dbf">price_monthly</div>
+      <div class="dbf">price_3months | price_6months</div>
+      <div class="dbf">sessions_count (null=unlimited)</div>
+      <div class="dbf">duration_days</div>
+      <div class="dbf">is_active</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--teal)">📋 client_subscriptions</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> client_id</div>
+      <div class="dbf"><span class="fk">FK</span> subscription_type_id</div>
+      <div class="dbf">start_date | end_date</div>
+      <div class="dbf">sessions_remaining</div>
+      <div class="dbf">amount_paid | discount</div>
+      <div class="dbf">status (active/frozen/expired)</div>
+      <div class="dbf">frozen_at | frozen_until | freeze_reason</div>
+      <div class="dbf">created_by (FK user)</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--red)">📅 attendance</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> client_id</div>
+      <div class="dbf"><span class="fk">FK</span> subscription_id</div>
+      <div class="dbf">check_in_at (timestamp)</div>
+      <div class="dbf">type (qr/manual)</div>
+      <div class="dbf">class_type</div>
+      <div class="dbf">sessions_before | sessions_after</div>
+      <div class="dbf">registered_by (FK user)</div>
+      <div class="dbf">notes | deleted_at</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--amber)">💰 transactions</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">type (income/expense)</div>
+      <div class="dbf">category</div>
+      <div class="dbf">amount</div>
+      <div class="dbf"><span class="fk">FK</span> client_id (nullable)</div>
+      <div class="dbf"><span class="fk">FK</span> subscription_id (nullable)</div>
+      <div class="dbf">payment_method (cash/card)</div>
+      <div class="dbf">cashier_id (FK user)</div>
+      <div class="dbf">receipt_url | notes</div>
+      <div class="dbf">created_at (immutable)</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--blue-slate)">🏋️ classes</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">name | type</div>
+      <div class="dbf"><span class="fk">FK</span> captain_id</div>
+      <div class="dbf">schedule (JSON)</div>
+      <div class="dbf">is_active</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--ink)">📝 audit_logs</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> user_id</div>
+      <div class="dbf">action | entity_type | entity_id</div>
+      <div class="dbf">old_values (JSON)</div>
+      <div class="dbf">new_values (JSON)</div>
+      <div class="dbf">ip_address | device_info</div>
+      <div class="dbf">created_at (immutable)</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:#25d366">💬 whatsapp_logs</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> client_id</div>
+      <div class="dbf">template_type</div>
+      <div class="dbf">message_content</div>
+      <div class="dbf">status (sent/failed/pending)</div>
+      <div class="dbf">sent_at | error_message</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--teal)">💸 debts</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> client_id</div>
+      <div class="dbf">amount | reason</div>
+      <div class="dbf">due_date</div>
+      <div class="dbf">status (pending/paid/cancelled)</div>
+      <div class="dbf">paid_at | notified_at</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--red)">🔔 notifications</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">type (expiry/sessions/debt)</div>
+      <div class="dbf"><span class="fk">FK</span> client_id</div>
+      <div class="dbf">channel (whatsapp/sms)</div>
+      <div class="dbf">scheduled_at | sent_at</div>
+      <div class="dbf">status</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:var(--amber);color:#333">👔 staff_shifts</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf"><span class="fk">FK</span> staff_id</div>
+      <div class="dbf">start_time | end_time</div>
+      <div class="dbf">opening_cash</div>
+      <div class="dbf">expected_cash</div>
+      <div class="dbf">actual_cash</div>
+      <div class="dbf">cash_difference</div>
+      <div class="dbf">difference_note</div>
+      <div class="dbf">total_subscriptions</div>
+      <div class="dbf">total_sessions_registered</div>
+      <div class="dbf">status (open/closed)</div>
+      <div class="dbf">handover_to (FK staff)</div>
+    </div></div>
+    <div class="dbt"><div class="dbt-h" style="background:#25d366">📣 campaigns</div><div class="dbt-b">
+      <div class="dbf"><span class="pk">PK</span> id</div>
+      <div class="dbf">name | target_filter (JSON)</div>
+      <div class="dbf">message_template_id</div>
+      <div class="dbf">custom_message</div>
+      <div class="dbf">scheduled_at</div>
+      <div class="dbf">status (draft/scheduled/running/done)</div>
+      <div class="dbf">total_recipients</div>
+      <div class="dbf">sent_count | failed_count</div>
+      <div class="dbf">created_by | created_at</div>
+    </div></div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ١١ التقنيات ════ -->
+<section id="s11" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#f0f2f8">⚙️</div>
+    <div>
+      <h2>١١ · المكدس التقني المُختار (Node.js First)</h2>
+      <p>بناءً على متطلبات الـ Real-time WebSocket + WhatsApp Bot + الأحداث المتزامنة — Node.js هو الخيار الأقوى والأمثل لهذا المشروع.</p>
+    </div>
+  </div>
+
+  <!-- Stack Decision -->
+  <div class="al al-or" style="margin-bottom:20px">
+    <div class="al-ico">🏆</div>
+    <div><strong>لماذا Node.js وليس Laravel؟</strong> النظام يحتاج: QR يُسجَّل فيُحدَّث Dashboard في كل الشاشات فوراً | واتساب Bot يستقبل ويرسل بشكل متزامن | حضور يدوي يظهر لحظياً للكابتن والاستقبال في نفس الوقت | Node.js + Socket.io تُنجز هذه المتطلبات الثلاثة بكفاءة وسهولة تطوير أعلى بكثير من Laravel في Real-time.</div>
+  </div>
+
+  <!-- Main Stack -->
+  <div class="card" style="margin-bottom:18px;border:2px solid var(--orange)">
+    <div class="card-hd"><span>⚡</span><h3 style="color:var(--orange)">المكدس الكامل — Stack المُختار</h3></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px">
+      <div style="background:var(--orange-pale);border-radius:10px;padding:16px;border:1.5px solid #fdd0b8">
+        <div style="font-size:24px;margin-bottom:6px">🟢</div>
+        <h4 style="font-size:13px;font-weight:800;color:var(--orange);margin-bottom:6px">Backend</h4>
+        <p style="font-size:12px;color:var(--body)"><strong>Node.js + Express.js</strong><br>REST API + Event-driven Architecture<br>BullMQ لـ Job Queues<br>node-cron للمهام المجدولة</p>
+      </div>
+      <div style="background:var(--blue-pale);border-radius:10px;padding:16px;border:1.5px solid #b8cef0">
+        <div style="font-size:24px;margin-bottom:6px">⚡</div>
+        <h4 style="font-size:13px;font-weight:800;color:var(--blue-slate);margin-bottom:6px">Real-time Layer</h4>
+        <p style="font-size:12px;color:var(--body)"><strong>Socket.io</strong><br>Rooms لتقسيم رجال/حريم<br>Events مباشرة لكل action<br>Auto-reconnect مدمج</p>
+      </div>
+      <div style="background:var(--teal-pale);border-radius:10px;padding:16px;border:1.5px solid #a0d8cc">
+        <div style="font-size:24px;margin-bottom:6px">🗄️</div>
+        <h4 style="font-size:13px;font-weight:800;color:var(--teal);margin-bottom:6px">Database</h4>
+        <p style="font-size:12px;color:var(--body)"><strong>MySQL + Redis</strong><br>MySQL: البيانات الدائمة<br>Redis: Sessions + Cache + Queues<br>Sequelize ORM</p>
+      </div>
+      <div style="background:#f8f0ff;border-radius:10px;padding:16px;border:1.5px solid #d8b8f0">
+        <div style="font-size:24px;margin-bottom:6px">⚛️</div>
+        <h4 style="font-size:13px;font-weight:800;color:#7030b0;margin-bottom:6px">Frontend</h4>
+        <p style="font-size:12px;color:var(--body)"><strong>React + Vite</strong><br>Zustand لـ State Management<br>Socket.io Client<br>TailwindCSS</p>
+      </div>
+      <div style="background:#e8f8f0;border-radius:10px;padding:16px;border:1.5px solid #a0d8b8">
+        <div style="font-size:24px;margin-bottom:6px">💬</div>
+        <h4 style="font-size:13px;font-weight:800;color:#0a7040;margin-bottom:6px">WhatsApp Bot</h4>
+        <p style="font-size:12px;color:var(--body)"><strong>whatsapp-web.js</strong><br>يعمل كـ microservice منفصل<br>يتصل بالـ Backend عبر REST<br>Queue لمنع الحظر</p>
+      </div>
+      <div style="background:#fff8e8;border-radius:10px;padding:16px;border:1.5px solid #f0d888">
+        <div style="font-size:24px;margin-bottom:6px">☁️</div>
+        <h4 style="font-size:13px;font-weight:800;color:#8a6000;margin-bottom:6px">Infrastructure</h4>
+        <p style="font-size:12px;color:var(--body)"><strong>VPS — Ubuntu 22.04</strong><br>Nginx Reverse Proxy<br>PM2 Process Manager<br>SSL/TLS مجاني (Let's Encrypt)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WebSocket Events Detail -->
+  <div class="card" style="margin-bottom:18px">
+    <div class="card-hd"><span>⚡</span><h3>أحداث Real-time WebSocket — كل Event ووظيفته</h3></div>
+    <div class="tbl" style="margin-top:14px">
+      <table>
+        <thead>
+          <tr><th>اسم الحدث (Event)</th><th>المُطلِق</th><th>المستقبِل</th><th>ما يحدث فوراً</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">attendance:checkin</code></td><td>QR Scanner</td><td>Dashboard + شاشة الحضور</td><td>يُضاف الاسم للقائمة فوراً + يزيد عداد الحضور + تُخصم حصة</td></tr>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">attendance:rejected</code></td><td>Server (تكرار/منتهي)</td><td>شاشة الحضور فقط</td><td>يظهر تحذير أحمر بالسبب (تكرار / منتهي / حصص انتهت)</td></tr>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">subscription:new</code></td><td>موظف استقبال</td><td>Dashboard Admin</td><td>يزيد العداد + يُضاف للـ Activity Feed + يُرسَل WhatsApp</td></tr>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">subscription:expiring</code></td><td>Cron Job (يومي)</td><td>Dashboard + تنبيهات</td><td>يظهر تنبيه بالاسم + الأيام المتبقية</td></tr>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">whatsapp:sent</code></td><td>WhatsApp Service</td><td>لوحة واتساب</td><td>تحديث حالة الرسالة من "معلقة" لـ "أُرسلت" ✅</td></tr>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">whatsapp:failed</code></td><td>WhatsApp Service</td><td>Dashboard + لوحة واتساب</td><td>تنبيه أحمر فوري + تسجيل في السجل</td></tr>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">shift:cash_mismatch</code></td><td>إغلاق شيفت</td><td>Admin فقط</td><td>تنبيه عاجل بالفارق + اسم الموظف</td></tr>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">member:frozen</code></td><td>Admin/كابتن</td><td>شاشة الحضور</td><td>QR هذا العضو يُرفض فوراً بدون إعادة تشغيل</td></tr>
+          <tr><td><code style="background:#f0f2f8;padding:2px 6px;border-radius:4px;font-size:11px">revenue:updated</code></td><td>كل عملية دفع</td><td>Dashboard Admin</td><td>يُحدَّث رقم الإيرادات في الوقت الفعلي</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- WhatsApp Bot Architecture -->
+  <div class="card" style="margin-bottom:18px">
+    <div class="card-hd"><span>💬</span><h3>معمارية WhatsApp Bot — كيف يعمل بشكل صحيح؟</h3></div>
+    <div class="flow" style="margin-top:14px">
+      <div class="flow-title">▶ تدفق إرسال رسالة واتساب</div>
+      <div class="fr">
+        <div class="fn fn-or">Backend يُصدر Event<div class="fnl">مثل: اشتراك جديد</div></div>
+        <div class="fa">→</div>
+        <div class="fn fn-bl">BullMQ Queue<div class="fnl">يُضيف مهمة الإرسال</div></div>
+        <div class="fa">→</div>
+        <div class="fn fn-tl">WhatsApp Worker<div class="fnl">يعالج المهمة</div></div>
+        <div class="fa">→</div>
+        <div class="fn fn-dk">Delay 10 ثانية<div class="fnl">منع الحظر</div></div>
+      </div>
+      <div class="fdv">▼</div>
+      <div class="fr">
+        <div class="fn fn-tl">إرسال ناجح ✅<div class="fnl">يُحدَّث السجل</div></div>
+        <div class="fo">أو</div>
+        <div class="fn fn-rd">فشل الإرسال ❌<div class="fnl">Retry 3 مرات</div></div>
+        <div class="fa">→</div>
+        <div class="fn fn-am">إشعار WebSocket<div class="fnl">للوحة التحكم فوراً</div></div>
+      </div>
+    </div>
+    <div class="g2" style="margin-top:14px">
+      <div class="al al-tl" style="margin:0">
+        <div class="al-ico">✅</div>
+        <div><strong>المزايا الرئيسية لـ whatsapp-web.js:</strong> مجاني وبدون رسوم API | يعمل كـ microservice منفصل | Puppeteer يُشغِّل واتساب ويب في الخلفية | Session محفوظة في Redis (لا إعادة ربط كل مرة) | Queue يضمن الإرسال بترتيب ومنع الحظر</div>
+      </div>
+      <div class="al al-rd" style="margin:0">
+        <div class="al-ico">⚠️</div>
+        <div><strong>تحذير مهم:</strong> whatsapp-web.js غير رسمي — إذا قرر الجيم مستقبلاً التوسع الكبير، يُنصح بالتحويل لـ Meta Cloud API الرسمي. للبداية والنمو المتوسط، whatsapp-web.js ممتاز ويوفّر آلاف الجنيهات شهرياً.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Currency & Localization -->
+  <div class="card" style="margin-bottom:18px;border:2px solid var(--teal)">
+    <div class="card-hd"><span>🇪🇬</span><h3 style="color:var(--teal)">العملة والتوطين — الجنيه المصري (ج.م)</h3></div>
+    <div class="g3" style="margin-top:14px">
+      <div style="background:var(--teal-pale);border-radius:10px;padding:14px">
+        <h4 style="font-size:13px;font-weight:800;color:var(--teal);margin-bottom:8px">💰 تخزين المبالغ</h4>
+        <p style="font-size:12px;color:var(--body)">كل مبالغ مخزنة كـ <strong>INTEGER بالقروش</strong> (150 ج.م = 15000 قرش) لتجنب أخطاء الـ Float في العمليات الحسابية المالية. يُعرَض للمستخدم كجنيهات.</p>
+      </div>
+      <div style="background:var(--orange-pale);border-radius:10px;padding:14px">
+        <h4 style="font-size:13px;font-weight:800;color:var(--orange);margin-bottom:8px">🔢 تنسيق العرض</h4>
+        <p style="font-size:12px;color:var(--body)">كل الأرقام بـ Intl.NumberFormat('ar-EG', currency: 'EGP') | مثال: <strong>١٥٠ ج.م</strong> أو <strong>150.00 EGP</strong> حسب السياق | الفواتير والتقارير بالجنيه المصري الرسمي.</p>
+      </div>
+      <div style="background:var(--blue-pale);border-radius:10px;padding:14px">
+        <h4 style="font-size:13px;font-weight:800;color:var(--blue-slate);margin-bottom:8px">📅 التاريخ والوقت</h4>
+        <p style="font-size:12px;color:var(--body)">توقيت القاهرة (UTC+2/+3 حسب الصيف) | التخزين كـ UTC دائماً | العرض محلي | التقويم: ميلادي مع دعم اختياري للهجري في التقارير.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tools Grid -->
+  <div class="g4">
+    <div class="card" style="text-align:center;padding:18px 14px"><div style="font-size:26px;margin-bottom:7px">📱</div><h4 style="font-size:13px;font-weight:800;margin-bottom:4px">QR Scanner</h4><p style="font-size:12px">html5-qrcode<br>يعمل بكاميرا أي جهاز</p></div>
+    <div class="card" style="text-align:center;padding:18px 14px"><div style="font-size:26px;margin-bottom:7px">💬</div><h4 style="font-size:13px;font-weight:800;margin-bottom:4px">WhatsApp Bot</h4><p style="font-size:12px">whatsapp-web.js<br>+ BullMQ Queue</p></div>
+    <div class="card" style="text-align:center;padding:18px 14px"><div style="font-size:26px;margin-bottom:7px">📄</div><h4 style="font-size:13px;font-weight:800;margin-bottom:4px">PDF Reports</h4><p style="font-size:12px">Puppeteer<br>تصميم HTML → PDF</p></div>
+    <div class="card" style="text-align:center;padding:18px 14px"><div style="font-size:26px;margin-bottom:7px">⏰</div><h4 style="font-size:13px;font-weight:800;margin-bottom:4px">المهام المجدولة</h4><p style="font-size:12px">node-cron<br>تنبيهات يومية تلقائية</p></div>
+    <div class="card" style="text-align:center;padding:18px 14px"><div style="font-size:26px;margin-bottom:7px">📊</div><h4 style="font-size:13px;font-weight:800;margin-bottom:4px">الرسوم البيانية</h4><p style="font-size:12px">Chart.js / Recharts<br>Real-time updates</p></div>
+    <div class="card" style="text-align:center;padding:18px 14px"><div style="font-size:26px;margin-bottom:7px">🔒</div><h4 style="font-size:13px;font-weight:800;margin-bottom:4px">الأمان</h4><p style="font-size:12px">JWT + bcrypt<br>Helmet.js + Rate Limit</p></div>
+    <div class="card" style="text-align:center;padding:18px 14px"><div style="font-size:26px;margin-bottom:7px">🗃️</div><h4 style="font-size:13px;font-weight:800;margin-bottom:4px">Cache & Queue</h4><p style="font-size:12px">Redis<br>Sessions + BullMQ</p></div>
+    <div class="card" style="text-align:center;padding:18px 14px"><div style="font-size:26px;margin-bottom:7px">🚀</div><h4 style="font-size:13px;font-weight:800;margin-bottom:4px">Deploy</h4><p style="font-size:12px">PM2 + Nginx<br>VPS Cairo/Egypt</p></div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ١٢ خطة التطوير ════ -->
+<section id="s12" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#fff3ee">🗓️</div>
+    <div><h2>١٢ · خطة التطوير (6 مراحل)</h2></div>
+  </div>
+  <div class="g2">
+    <div class="phases">
+      <div class="phase">
+        <div class="ph-line"><div class="ph-dot"></div><div class="ph-bar"></div></div>
+        <div class="ph-body">
+          <h4><span class="ph-tag" style="background:var(--red-pale);color:var(--red)">مرحلة ١</span> البنية التحتية + Auth + DB <span class="ph-tag" style="background:#f0f2f8;color:var(--muted)">2 أسبوعين</span></h4>
+          <p>إعداد Node.js + Express + MySQL + Redis | هيكل قاعدة البيانات كامل | JWT Auth + RBAC + صلاحية الجنس | Socket.io Server جاهز | PM2 + Nginx على VPS | تهيئة العملة (ج.م بالقروش)</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-line"><div class="ph-dot"></div><div class="ph-bar"></div></div>
+        <div class="ph-body">
+          <h4><span class="ph-tag" style="background:var(--orange-pale);color:var(--orange)">مرحلة ٢</span> الأعضاء + الاشتراكات + QR <span class="ph-tag" style="background:#f0f2f8;color:var(--muted)">3 أسابيع</span></h4>
+          <p>إدارة الأعضاء الكاملة | الاشتراكات الديناميكية بالجنيه المصري | إصدار QR + ربط بالقارئ | شاشة الحضور Real-time عبر Socket.io | منع التكرار | Audit Log</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-line"><div class="ph-dot"></div><div class="ph-bar"></div></div>
+        <div class="ph-body">
+          <h4><span class="ph-tag" style="background:var(--blue-pale);color:var(--blue-slate)">مرحلة ٣</span> المالية + الشيفتات + الديون <span class="ph-tag" style="background:#f0f2f8;color:var(--muted)">2 أسبوعين</span></h4>
+          <p>الخزنة لكل موظف | نظام الشيفتات + تسليم النقدية | الديون والمتأخرات | Real-time revenue counter | تقارير PDF بالجنيه المصري</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-line"><div class="ph-dot"></div><div class="ph-bar"></div></div>
+        <div class="ph-body">
+          <h4><span class="ph-tag" style="background:var(--teal-pale);color:var(--teal)">مرحلة ٤</span> WhatsApp Bot + BullMQ <span class="ph-tag" style="background:#f0f2f8;color:var(--muted)">2 أسبوعين</span></h4>
+          <p>تشغيل whatsapp-web.js كـ microservice | BullMQ Queue للإرسال المنضبط | كل قوالب الرسائل | الحملات الجماعية | تنبيهات الانتهاء والديون | سجل الرسائل Real-time</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-line"><div class="ph-dot"></div><div class="ph-bar"></div></div>
+        <div class="ph-body">
+          <h4><span class="ph-tag" style="background:var(--amber-pale);color:var(--amber)">مرحلة ٥</span> Dashboard + التقارير + التجميد <span class="ph-tag" style="background:#f0f2f8;color:var(--muted)">أسبوعين</span></h4>
+          <p>Dashboard تفاعلي بالرسوم البيانية Real-time | نظام التجميد الكامل | التقارير بكل أنواعها | صفحة التنبيهات | نظام الحملات الكامل</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="ph-line"><div class="ph-dot"></div></div>
+        <div class="ph-body">
+          <h4><span class="ph-tag" style="background:#e8f8f0;color:var(--teal)">مرحلة ٦</span> اختبار شامل + Hardening + إطلاق <span class="ph-tag" style="background:#f0f2f8;color:var(--muted)">أسبوعين</span></h4>
+          <p>اختبار كل السيناريوهات (QR مكرر / انقطاع / فارق نقدية) | Penetration Testing أساسي | Backup تلقائي | تدريب الموظفين | إطلاق تجريبي أسبوع ثم كامل</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="text-align:center;margin-bottom:14px;border:2px solid var(--orange)">
+        <div class="card-hd" style="justify-content:center;margin-bottom:8px"><span style="font-size:22px">⏱️</span><h3>إجمالي التطوير</h3></div>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;color:var(--orange);line-height:1">13–15</p>
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">أسبوعاً</p>
+        <p style="font-size:12.5px;color:var(--muted)">يشمل Real-time + WhatsApp Bot + نظام الشيفتات</p>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-hd"><span style="font-size:20px">👥</span><h3>الفريق المقترح</h3></div>
+        <p>
+          <span class="tag tg-or">1 × مدير مشروع</span>
+          <span class="tag tg-bl">2 × مطور Node.js Backend</span>
+          <span class="tag tg-tl">1 × مطور React Frontend</span>
+          <span class="tag tg-rd">1 × مختبر QA</span>
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-hd"><span style="font-size:20px">🖥️</span><h3>مواصفات السيرفر المُوصى به</h3></div>
+        <ul>
+          <li>VPS: 4 vCPU + 8 GB RAM</li>
+          <li>SSD: 80 GB على الأقل</li>
+          <li>موقع: القاهرة أو أوروبا (أقل latency)</li>
+          <li>توفير: Hetzner / Contabo / DigitalOcean</li>
+          <li>Backup يومي تلقائي</li>
+          <li>Monitoring: PM2 + UptimeRobot مجاني</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ════ ١٣ التحسينات ════ -->
+<section id="s13" class="sec">
+  <div class="sec-hd">
+    <div class="sec-ico" style="background:#e6f7f3">💡</div>
+    <div><h2>١٣ · التحسينات والإضافات المقترحة</h2></div>
+  </div>
+  <div class="al al-bl" style="margin-bottom:16px">
+    <div class="al-ico">📌</div>
+    <div><span class="tag tg-rd">يجب</span> ضروري لـ Production | <span class="tag tg-or">مُوصى به</span> يُحسّن الأمان والكفاءة | <span class="tag tg-tl">مستقبلاً</span> قيمة مضافة</div>
+  </div>
+  <div class="impr">
+    <div class="ip ip-must">
+      <h4><span class="tag tg-rd">يجب</span> 📸 صورة العضو — أمان أساسي</h4>
+      <p>عند مسح QR تظهر صورة العضو كبيرة فوراً. موظف الاستقبال يتحقق بصرياً. تمنع إعارة الكارت لأشخاص آخرين. إذا لا توجد صورة: تحذير "تحقق يدوياً".</p>
+    </div>
+    <div class="ip ip-must">
+      <h4><span class="tag tg-rd">يجب</span> 🔒 نسخ احتياطية تلقائية</h4>
+      <p>Backup يومي تلقائي لـ MySQL. الاحتفاظ بـ 30 يوم. رفع نسخة على Google Drive / S3. تنبيه واتساب للأدمن إذا فشل الـ Backup.</p>
+    </div>
+    <div class="ip ip-must">
+      <h4><span class="tag tg-rd">يجب</span> 🧾 إيصال PDF عند كل دفعة</h4>
+      <p>Puppeteer يُولِّد إيصال PDF فور الدفع: اسم + نوع اشتراك + مبلغ بالجنيه المصري + خصم + توقيع رقمي + تاريخ. قابل للطباعة + يُرسَل واتساب تلقائياً.</p>
+    </div>
+    <div class="ip ip-must">
+      <h4><span class="tag tg-rd">يجب</span> ✅ نظام موافقة الخصومات</h4>
+      <p>الاستقبال يطلب خصماً + سبب → Admin يُبلَّغ Socket.io → يوافق أو يرفض. لا خصم يُطبَّق بدون Admin. حد مسموح للاستقبال (مثلاً 10%) يُعدَّل من الإعدادات.</p>
+    </div>
+    <div class="ip ip-must">
+      <h4><span class="tag tg-rd">يجب</span> 💳 صفحة إدارة مخزون الكروت</h4>
+      <p>تتبع كل كارت: متاح / مُوزَّع / مفقود / ملغي / تالف. Flow استبدال كارت مع إلغاء QR القديم فوراً وإصدار جديد. Log لكل عملية استبدال.</p>
+    </div>
+    <div class="ip ip-must">
+      <h4><span class="tag tg-rd">يجب</span> 📵 Offline Mode بـ IndexedDB</h4>
+      <p>حضور يُحفظ محلياً في IndexedDB عند انقطاع الإنترنت. Service Worker يُزامن عند العودة. Conflict Resolution: لو نفس QR اتسجل offline وonline → الأقدم يُقبَل والأحدث يُرفض.</p>
+    </div>
+    <div class="ip ip-should">
+      <h4><span class="tag tg-or">مُوصى به</span> 🔔 Push Notifications للموظفين</h4>
+      <p>Web Push Notifications (PWA) تصل حتى لو المتصفح مغلق. مكمّلة لـ Socket.io (الذي يعمل فقط والمتصفح مفتوح). أحداث مهمة: فارق نقدية في الشيفت / فشل واتساب / اشتراك انتهى الآن.</p>
+    </div>
+    <div class="ip ip-should">
+      <h4><span class="tag tg-or">مُوصى به</span> 📊 Dashboard تفاعلي متقدم</h4>
+      <p>رسوم بيانية Real-time: حضور اليوم بالساعة، أوقات الذروة، أكثر الأعضاء حضوراً، الإيرادات الشهرية بالجنيه المصري.</p>
+    </div>
+    <div class="ip ip-should">
+      <h4><span class="tag tg-or">مُوصى به</span> 📱 تطبيق موبايل للاستقبال</h4>
+      <p>PWA أو React Native يستخدم كاميرا الهاتف كـ QR Scanner. مناسب كـ backup عند تعطل القارئ أو للتسجيل من أي مكان في الجيم.</p>
+    </div>
+    <div class="ip ip-should">
+      <h4><span class="tag tg-or">مُوصى به</span> 🎁 نظام الكوبونات والعروض الموسمية</h4>
+      <p>كوبون بكود + نسبة خصم + صلاحية. عروض رمضان / الصيف بمدة محددة. يُضاف عند إنشاء الاشتراك. Log لكل كوبون استُخدم.</p>
+    </div>
+    <div class="ip ip-should">
+      <h4><span class="tag tg-or">مُوصى به</span> 🔔 تنبيه يومي للأدمن</h4>
+      <p>كل صباح واتساب للأدمن: عدد الاشتراكات التي ستنتهي خلال 3 أيام + إجمالي إيرادات الأمس + أي فوارق نقدية لم تُحسَم.</p>
+    </div>
+    <div class="ip ip-should">
+      <h4><span class="tag tg-or">مُوصى به</span> 🌐 WhatsApp Cloud API الرسمي (مستقبلاً)</h4>
+      <p>whatsapp-web.js غير رسمي وقد يُحجب مع تحديثات واتساب. للتجاري الجدي: Meta Cloud API عبر Twilio أو 360dialog. أكثر استقراراً. يُنصح بالتخطيط للترقية بعد الإطلاق الأولي.</p>
+    </div>
+    <div class="ip ip-nice">
+      <h4><span class="tag tg-tl">مستقبلاً</span> 📲 تطبيق العضو</h4>
+      <p>تطبيق للعضو: حضوره، حصصه المتبقية، تاريخ انتهاء اشتراكه، إيصالات الدفع. بدون الحاجة لتواصل مع الاستقبال.</p>
+    </div>
+    <div class="ip ip-nice">
+      <h4><span class="tag tg-tl">مستقبلاً</span> 🤖 AI توقع الانقطاع</h4>
+      <p>تحليل نمط الحضور لكل عضو. إذا الحضور انخفض فجأة → رسالة تحفيز تلقائية.</p>
+    </div>
+    <div class="ip ip-nice">
+      <h4><span class="tag tg-tl">مستقبلاً</span> 📅 حجز الحصص مسبقاً</h4>
+      <p>العضو يحجز مكانه في الحصة عبر واتساب أو رابط. تأكيد تلقائي. عداد الأماكن في لوحة الإدارة.</p>
+    </div>
+    <div class="ip ip-nice">
+      <h4><span class="tag tg-tl">مستقبلاً</span> 🏆 نقاط وحوافز الالتزام</h4>
+      <p>نقطة لكل حضور. 30 نقطة = حصة مجانية أو خصم. يُعرض في بروفايل العضو ويُحفّز الالتزام.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <strong>GymOS</strong> — نظام إدارة الجيم الاحترافي | الجنيه المصري 🇪🇬<br>
+  وثيقة التخطيط الشاملة <strong>v4.0 — Production Ready</strong> | 16 قسماً · 19 صفحة إدارة · Node.js + Socket.io + WhatsApp Bot · 6 مراحل (13-15 أسبوع)<br>
+  <span style="font-size:11px;opacity:0.3;margin-top:6px;display:block">HID QR Scanner · IndexedDB Offline · موافقة الخصومات · مخزون الكروت · PDF إيصالات · Push Notifications · تمديد التجميد تلقائي</span>
+</footer>
+
+</body>
+</html>
